@@ -47,13 +47,16 @@
                 <!-- ==== Roles ==== -->
                 <div class="form-group">
                     <label for="roles" class="control-label col-sm-2">Roles:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-9 col-sm-offset-1">
+                        <div class="checkbox">
+                            <label v-for="role in roles"><input type="checkbox" class="checkbox-info" v-model="editUser.roles">{{ role.role_name }} &nbsp;</label>
+                        </div>
                         <!--<ul>
                             <li v-for="role in roles">{{ role.role_name }}</li>
                         </ul>-->
-                        <select multiple class="form-control" v-model="editUser.roles">
+                        <!--<select multiple class="form-control" v-model="editUser.roles">
                             <option v-for="role in roles" v-bind:value="role.role_name">{{ role.role_name }}</option>
-                        </select>
+                        </select>-->
                         <!--<select multiple class="form-control">
                             <option v-for="role in roles">{{ role.role_name }}</option>
                         </select>-->
@@ -98,8 +101,8 @@
 
         <div class="col-md-12">
             <!--{{ user }}
-            <hr>
-            {{ editUser }}-->
+            <hr>-->
+            {{ editUser }}
         </div>            
 
         <!-- edit form -->
@@ -141,6 +144,9 @@ export default {
             }).then((response) => {
                 this.roles = response.data
             })
+        },
+        isInArray: function(array, value) {
+            return array.indexOf(value) > -1 ? true : false;
         }
     },
     watch: {
