@@ -14,13 +14,12 @@ export default {
         console.log("sending request")
         context.$http.post(LOGIN_URL, creds
         ).then((response) => {
-            if(response.body.length == 830)
-                localStorage.setItem('token', response.body)
-                Vue.http.headers.common['Authorization'] = this.getAuthHeader()
-                this.getAuthenticatedUser(context)
-                this.checkAuth()
-                if(redirect)
-                    router.push(redirect)
+            localStorage.setItem('token', response.body)
+            Vue.http.headers.common['Authorization'] = this.getAuthHeader()
+            this.getAuthenticatedUser(context)
+            this.checkAuth()
+            if(redirect)
+                router.push(redirect)
         }).catch((err) => {
             context.error = err.response.data
         })
