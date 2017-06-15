@@ -12,6 +12,7 @@
         <div class="col-md-6" id="editUser">
             <form class="form-horizontal">
                 
+                <!-- ==== Firstname ==== -->
                 <div class="form-group">
                     <label for="firstname" class="control-label col-sm-2">Firstname:</label>
                     <div class="col-sm-10">
@@ -19,6 +20,7 @@
                     </div>
                 </div>
 
+                <!--==== Lastname ==== -->
                 <div class="form-group">
                     <label for="lastname" class="control-label col-sm-2">Lastname:</label>
                     <div class="col-sm-10">
@@ -26,6 +28,7 @@
                     </div>
                 </div>
 
+                <!-- ==== Initials ==== -->
                 <div class="form-group">
                     <label for="initials" class="control-label col-sm-2">Initials:</label>
                     <div class="col-sm-10">
@@ -33,10 +36,30 @@
                     </div>
                 </div>
 
+                <!-- ==== Password ====-->
                 <div class="form-group">
                     <label for="password" class="control-label col-sm-2">Password:</label>
                     <div class="col-sm-10">
                         <input type="text" v-model="editUser.password" class="form-control" id="password" >
+                    </div>
+                </div>
+
+                <!-- ==== Roles ==== -->
+                <div class="form-group">
+                    <label for="roles" class="control-label col-sm-2">Roles:</label>
+                    <div class="col-sm-10">
+                        <!--<ul>
+                            <li v-for="role in roles">{{ role.role_name }}</li>
+                        </ul>-->
+                        <select multiple class="form-control" v-model="editUser.roles">
+                            <option v-for="role in roles" v-bind:value="role.role_name">{{ role.role_name }}</option>
+                        </select>
+                        <!--<select multiple class="form-control">
+                            <option v-for="role in roles">{{ role.role_name }}</option>
+                        </select>-->
+                        <!--<ul>
+                            <li v-for="role in roles">{{ role.role_name }}</li>
+                        </ul>-->
                     </div>
                 </div>
             </form>
@@ -60,16 +83,28 @@
             </div>
             <div class="form-group">
                 <label for="roles">Roles:</label>
-                <span id="roles" :class="{'bg-danger' : user.roles!=editUser.roles}" >{{ user.roles }}</span> <span class="bg-success" v-if="user.roles!=editUser.roles">{{ editUser.roles }}</span><br/>
+                <span id="roles" :class="{'bg-danger' : user.roles!=editUser.roles}">| 
+                    <span v-for="role in user.roles">
+                        {{ role.role_name }} | 
+                    </span>
+                </span> 
+                <span class="bg-success" v-if="user.roles!=editUser.roles">| 
+                    <span v-for="role in editUser.roles">
+                        {{ role.role_name }} | 
+                    </span>
+                </span><br/>
             </div>
         </div>        
-            
+
+        <div class="col-md-12">
+            {{ user }}
+            <hr>
+            {{ editUser }}
+        </div>            
 
         <!-- edit form -->
         
-    </div>
-                
-
+    </div>  
   </div>
 </template>
 
@@ -78,9 +113,9 @@ export default {
     name: 'users',
     data () {
         return {
-            user: '',
-            // editedUser: {userId:'',firstname:'',lastname:'',initials:'',password:''},
-            editUser: '',
+            user: {},
+            editUser: {},
+            roles: {},
             currentUserId: 0
         }
     },
@@ -96,13 +131,27 @@ export default {
             }).then((response) => {
                 this.user = response.data
                 this.editUser = Object.assign({}, this.user)
-            });
+            })
+        },
+        fetchRoles: function() {
+            this.$http.post('http://localhost:8000/module/role/get/all', { 'Accept' : 'application/json' }, {
+                headers: {
+                    'Authorizationn' : 'Bearer ' + localStorage.getItem('token')
+                }
+            }).then((response) => {
+                this.roles = response.data
+            })
         }
     },
     watch: {
         currentUserId: function(val) {
-            this.fetchUser(val);
+            this.fetchUser(val)
         }
+    },
+    created() {
+            this.fetchRoles()
+            console.log(this.roles)
+            console.log("Auth Token: " + localStorage.getItem('token'))
     }
 }
 </script>
