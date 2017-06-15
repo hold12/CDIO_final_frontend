@@ -11,8 +11,6 @@ import auth from './auth'
 Vue.config.productionTip = false
 Vue.use(vueResource)
 
-auth.checkAuth()
-
 Vue.http.headers.common['Authorization'] = auth.getAuthHeader();
 
 /* eslint-disable no-new */

@@ -13,17 +13,16 @@ export default {
     login(context, creds, redirect) {
         console.log("sending request")
         context.$http.post(LOGIN_URL, creds
-        ).catch((err) => {
-            context.error = err.response.data
-        }).then((response) => {
+        ).then((response) => {
             if(response.body.length == 830)
                 localStorage.setItem('token', response.body)
                 Vue.http.headers.common['Authorization'] = this.getAuthHeader()
-                this.user.authenticated = true
                 this.getAuthenticatedUser(context)
-
+                this.checkAuth()
                 if(redirect)
                     router.push(redirect)
+        }).catch((err) => {
+            context.error = err.response.data
         })
     },
 
@@ -38,10 +37,12 @@ export default {
         let jwt = localStorage.getItem('token')
 
         if(jwt) {
+            this.user.authenticatedUser = JSON.parse(localStorage.getItem('authenticatedUser'))
             this.user.authenticated = true
         }
 
         else {
+            localStorage.removeItem('authenticatedUser')
             this.user.authenticated = false
         }
 
@@ -56,7 +57,7 @@ export default {
             'Authorization': this.getAuthHeader()
             }
         }).then((response) => {
-            this.user.authenticatedUser = response.data
+            localStorage.setItem('authenticatedUser', JSON.stringify(response.data))
         })
     },
     
