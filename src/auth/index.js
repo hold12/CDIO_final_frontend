@@ -6,31 +6,30 @@ const LOGIN_URL = API_URL + 'auth/authentication/'
 
 export default {
     user: {
-        authenticated: false
+        authenticated: false,
+        authenticatedUser: null
     },
-    returnUser: [],
 
     login(context, creds, redirect) {
         console.log("sending request")
         context.$http.post(LOGIN_URL, creds
-        ).catch((err) => {
-            context.error = err.response.data
-            return false
-        }).then((response) => {
-                console.log(response.body)
+        ).then((response) => {
+            if(response.body.length == 830)
                 localStorage.setItem('token', response.body)
                 Vue.http.headers.common['Authorization'] = this.getAuthHeader()
-                this.user.authenticated = true
-
+                this.getAuthenticatedUser(context)
+                this.checkAuth()
                 if(redirect)
                     router.push(redirect)
-            
+        }).catch((err) => {
+            context.error = err.response.data
         })
     },
 
     logout() {
         localStorage.removeItem('token')
         this.user.authenticated = false
+        this.user.authenticatedUser = null
         delete Vue.http.headers.common['Authorization']
     },
 
@@ -38,14 +37,28 @@ export default {
         let jwt = localStorage.getItem('token')
 
         if(jwt) {
+            this.user.authenticatedUser = JSON.parse(localStorage.getItem('authenticatedUser'))
             this.user.authenticated = true
         }
 
         else {
+            localStorage.removeItem('authenticatedUser')
             this.user.authenticated = false
         }
 
         return this.user.authenticated
+    },
+
+    getAuthenticatedUser(context) {
+        context.$http.post('http://localhost:8000/module/home/getLoggedUser', {
+            'Accept': 'application/json'
+        }, {
+          headers: {
+            'Authorization': this.getAuthHeader()
+            }
+        }).then((response) => {
+            localStorage.setItem('authenticatedUser', JSON.stringify(response.data))
+        })
     },
     
     getAuthHeader() {

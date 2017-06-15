@@ -6,9 +6,17 @@
         <ul class="nav navbar-nav">
           <li v-if="!user.authenticated"><router-link to="/Login">Login</router-link></li>
           <li v-if="user.authenticated" @click="logout()"><router-link to="/">Logout</router-link></li>
-          <li><router-link to="/Users">Users</router-link></li>
+          <li v-if="user.authenticated">
+              <span v-for="role in user.authenticatedUser.roles">
+                <span v-if="role.permissions!=null">
+                  <span v-for="permission in role.permissions">
+                    <span v-if="permission == 'user.read'"><router-link to="/Users" class="navbar-text">Users</router-link></span>
+                  </span>
+                </span>
+              </span>
+          </li>
         </ul>
-        <p class="navbar-text navbar-right" v-if="authenticatedUser">Logged in as <a href="#">{{ authenticatedUser.firstname }}</a></p>
+        <p class="navbar-text navbar-right" v-if="user.authenticatedUser">Logged in as <a href="#">{{ user.authenticatedUser.firstname }}</a></p>
         <p class="navbar-text navbar-right" v-else>Not logged in</p>
       </div>
     </nav>
@@ -26,29 +34,13 @@ export default {
   data() {
     return {
       user: auth.user,
-      authenticatedUser: null
+      role: null
     }
   },
   methods: {
     logout() {
-      this.authenticatedUser = null
       auth.logout()
-    },
-    getAuthenticatedUser(context) {
-        context.$http.post('http://localhost:8000/module/home/getLoggedUser', {
-          'Accept': 'application/json'
-        }, {
-          headers: {
-            'Authorization': auth.getAuthHeader()
-          }
-        }).then((response) => {
-            this.authenticatedUser = response.data
-        })
-      }
-  },
-  created() {
-    if (auth.checkAuth())
-      this.getAuthenticatedUser(this)
+    }
   }
 }
 </script>
