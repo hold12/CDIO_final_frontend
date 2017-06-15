@@ -35,11 +35,7 @@ export default {
   name: 'users',
   data () {
     return {
-      users: '',
-      credentials: {
-        username: '1',
-        password: 'root'
-      }
+      users: ''
     }
   },
   methods: {

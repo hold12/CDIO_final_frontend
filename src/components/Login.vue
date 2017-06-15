@@ -35,8 +35,8 @@ export default {
         return {
             loggingIn: false,
             credentials: {
-                userId: '',
-                password: ''
+                userId: '1',
+                password: 'root'
             },
             error: ''
         }
@@ -48,13 +48,9 @@ export default {
                 userId: this.credentials.userId,
                 password: this.credentials.password
             }
+            auth.login(this, credentials, '/')
             
-            let success = auth.login(this, credentials, '/')
-
-            console.log(success)
-
-            if (!success)
-                this.loggingIn = false
+            this.loggingIn = false
         }
     }
 }
