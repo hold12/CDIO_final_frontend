@@ -97,9 +97,9 @@
         </div>        
 
         <div class="col-md-12">
-            {{ user }}
+            <!--{{ user }}
             <hr>
-            {{ editUser }}
+            {{ editUser }}-->
         </div>            
 
         <!-- edit form -->
