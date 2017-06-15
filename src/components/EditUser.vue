@@ -48,14 +48,14 @@
                 <div class="form-group">
                     <label for="roles" class="control-label col-sm-2">Roles:</label>
                     <div class="col-sm-9 col-sm-offset-1">
-                        <div class="checkbox">
+                        <!--<div class="checkbox">
                             <label v-for="role in roles"><input type="checkbox" class="checkbox-info" v-model="editUser.roles">{{ role.role_name }} &nbsp;</label>
-                        </div>
+                        </div>-->
                         <!--<ul>
                             <li v-for="role in roles">{{ role.role_name }}</li>
                         </ul>-->
                         <!--<select multiple class="form-control" v-model="editUser.roles">
-                            <option v-for="role in roles" v-bind:value="role.role_name">{{ role.role_name }}</option>
+                            <option v-for="role in roles">{{ role.role_name }}</option>
                         </select>-->
                         <!--<select multiple class="form-control">
                             <option v-for="role in roles">{{ role.role_name }}</option>
@@ -97,16 +97,13 @@
                     </span>
                 </span><br/>
             </div>
+            <div class="form-group">
+                <label for="isActive">Is Active:</label>
+                <!--<span id="isActive" ;class="{'bg-danger' : user.isActive!=editUser.isActive}">{{ user.isActive }}</span>-->
+            </div>
         </div>        
-
-        <div class="col-md-12">
-            <!--{{ user }}
-            <hr>-->
-            {{ editUser }}
-        </div>            
-
         <!-- edit form -->
-        
+        Page: {{ this.$route.query }}
     </div>  
   </div>
 </template>
@@ -156,8 +153,6 @@ export default {
     },
     created() {
             this.fetchRoles()
-            console.log(this.roles)
-            console.log("Auth Token: " + localStorage.getItem('token'))
     }
 }
 </script>
