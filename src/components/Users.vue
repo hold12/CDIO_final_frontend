@@ -1,7 +1,7 @@
 <template>
   <div class="users container">
     <h1 class="page-header">Manage Users</h1>
-    <button class="btn btn-success" @click="fetchUsers">Click Me</button>
+    <a href="users/edit" class="btn btn-success">Click Me</a>
     <div class="users-table">
       <table class="table table-striped">
         <thead>
