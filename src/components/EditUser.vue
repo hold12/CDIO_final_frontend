@@ -167,7 +167,7 @@ export default {
                 'Authorization': auth.getAuthHeader()
                 }
             }).then((response) => {
-                router.push('/Users')
+                editUser.password=response.data
             });
             console.log("Function finish")
         }
