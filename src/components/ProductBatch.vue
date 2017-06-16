@@ -23,7 +23,11 @@
 						<td>{{ pb.recipeId }}</td>
 						<td>{{ pb.recipeName }}</td>
 						<td>{{ new Date(pb.createdTime) }}</td>
-						<td>{{ new Date(pb.finishedTime) }}</td>
+						<td>
+							<div v-if="pb.finishedTime != null">
+								{{ new Date(pb.finishedTime) }}
+							</div>
+						</td>
 						<td>{{ pb.status }}</td>
 						<td>{{ pb.userId }}</td>
 						<td>{{ pb.initials }}</td>
