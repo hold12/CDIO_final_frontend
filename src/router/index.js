@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import EditUser from '@/components/EditUser'
 import IngredientBatch from '@/components/IngredientBatch'
 import IngredientBatchNNew from '@/components/IngredientBatchNNew'
+import IngredientBatchEdit from '@/components/IngredientBatchEdit'
 import Ingredient from '@/components/Ingredient'
 import IngredientNew from '@/components/IngredientNew'
 
@@ -37,6 +38,11 @@ export default new Router({
       path: '/IngredientBatch/New',
       name: 'Ingredient Batch New',
       component: IngredientBatchNNew
+    },
+    {
+      path: '/IngredientBatch/Edit',
+      name: 'Ingredient Batch Edit',
+      component: IngredientBatchEdit
     },
     {
       path: '/Ingredient',
