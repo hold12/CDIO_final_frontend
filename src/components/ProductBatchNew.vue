@@ -3,14 +3,15 @@
         <h1>Create a new Product Batch</h1>
         <form class="form-horizontal">
             <div class="col-md-6 col-md-offset-2">
-                <div class="form-group">
-                    <label for="recipeId" class="control-label">Recipe ID:</label>
-                    <input type="text" id="recipeId" class="form-control" v-model="ProductBatch.recipeId">
-                </div>
-                <div class="form-group">
-                    <label for="userId" class="control-label">User ID:</label>
-                    <input type="text" id="userId" class="form-control" v-model="ProductBatch.userId">
-                </div>
+              <label for="recipeId" class="control-label">Recipe:</label>
+              <select class="form-control" v-model="ProductBatch.recipeId">
+                  <option v-for="r in recipes" :value="r.recipeId">{{ r.recipeId }} &mdash; {{ r.recipeName }}</option>
+              </select>
+
+                <label for="userId" class="control-label">User:</label>
+                <select class="form-control" v-model="ProductBatch.userId">
+                    <option v-for="u in users" :value="u.userId">{{ u.userId }} &mdash; {{ u.initials }}</option>
+                </select>
 
                 <button class="btn btn-success form-control" @click="putProductBatch">Create Product Batch</button>
             </div>
@@ -27,7 +28,9 @@ export default {
         return {
             ProductBatch: {
                 "recipeId": 0, "userId": 0
-            }
+            },
+            users: {},
+            recipes: {}
         }
     },
     methods: {
@@ -41,7 +44,33 @@ export default {
                 this.productbatches = response.data
                 router.push('/ProductBatch')
             });
+        },
+        fetchRecipes: function() {
+                this.$http.post('http://localhost:8000/module/recipe/get/all', {
+            'Accept': 'application/json'
+            }, {
+                headers: {
+                'Authorization': auth.getAuthHeader()
+                }
+            }).then((response) => {
+                this.recipes = response.data
+            });
+          },
+        fetchUsers: function() {
+                this.$http.post('http://localhost:8000/module/user/get/all', {
+            'Accept': 'application/json'
+            }, {
+                headers: {
+                'Authorization': auth.getAuthHeader()
+                }
+            }).then((response) => {
+                this.users = response.data
+            });
         }
+      },
+      created() {
+          this.fetchRecipes()
+          this.fetchUsers()
+      }
     }
-}
 </script>
