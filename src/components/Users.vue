@@ -1,7 +1,7 @@
 <template>
   <div class="users container">
     <h1 class="page-header">Manage Users</h1>
-    <a href="users/edit" class="btn btn-success">Click Me</a>
+    <a href="users/edit" class="btn btn-info">Create new user</a><br><br>
     <div class="users-table">
       <table class="table table-striped">
         <thead>
@@ -22,6 +22,7 @@
             <td>{{ user.initials }}</td>
             <td>{{ user.password }}</td>
             <td>| <span v-for="role in user.roles">{{ role.role_name }} | </span></td>
+            <td><router-link :to="'/Users/Edit?id='+user.userId" class="btn btn-info">Edit</router-link></td>  
           </tr>
         </tbody>
       </table>
