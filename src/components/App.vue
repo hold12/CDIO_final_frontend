@@ -10,7 +10,7 @@
             <router-link :to="link.url">{{ link.text }}</router-link>
           </li>
         </ul>
-        <p class="navbar-text navbar-right" v-if="user.authenticatedUser">Logged in as <a href="#">{{ user.authenticatedUser.firstname }}</a></p>
+        <p class="navbar-text navbar-right" v-if="user.authenticatedUser">Logged in as <router-link to="/Profile">{{ user.authenticatedUser.firstname }}</router-link></p>
         <p class="navbar-text navbar-right" v-else>Not logged in</p>
       </div>
     </nav>

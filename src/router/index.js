@@ -14,6 +14,7 @@ import IngredientNew from '@/components/IngredientNew'
 import ProductBatch from '@/components/ProductBatch'
 import ProductBatchNew from '@/components/ProductBatchNew'
 import ProductBatchComponent from '@/components/ProductBatchComponent'
+import Profile from '@/components/Profile'
 
 Vue.use(Router)
 
@@ -89,6 +90,11 @@ export default new Router({
       path: '/ProductBatchComponent',
       name: 'Product Batch Component',
       component: ProductBatchComponent
+    },
+    {
+      path: '/Profile',
+      name: 'Profile',
+      component: Profile
     }
   ]
 })
