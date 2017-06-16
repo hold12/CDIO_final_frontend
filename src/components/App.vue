@@ -24,11 +24,9 @@
 import auth from '../auth'
 export default {
   name: 'app',
-  
   data() {
     return {
-      user: auth.user,
-      role: null
+      user: auth.user
     }
   },
   methods: {
@@ -40,41 +38,21 @@ export default {
     getPermittedLinks: function () {
       let links = []
       if (this.user.authenticatedUser != null) {
-        console.log("did a thing!")
-        console.log(this.user.authenticatedUser)
         for (var i = 0; i < this.user.authenticatedUser.roles.length; i++) {
-          console.log("did another thing!")
-          console.log(this.user.authenticatedUser.roles[i].permissions)
           for (var j = 0; j < this.user.authenticatedUser.roles[i].permissions.length; j++) {
-            console.log("did yet another thing!")
-            console.log(this.user.authenticatedUser.roles[i].permissions[j])
-            if (this.user.authenticatedUser.roles[i].permissions[j] == 'user.read'){
-              console.log("pushed Users link")
+            if (this.user.authenticatedUser.roles[i].permissions[j] == 'user.read')
               links.push({'url': '/Users','text': 'Users'})
-              }
-            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'recipe.read') {
+            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'recipe.read')
               links.push({'url': '/Recipes','text': 'Recipes'})
-              console.log("pushed Recipes link")
-              }
-            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'ingredient.read') {
+            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'ingredient.read')
               links.push({'url': '/Ingredients','text': 'Ingredients'})
-              console.log("pushed Ingredients link")
-              }
-            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'ingredientbatch.read') {
+            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'ingredientbatch.read')
               links.push({'url': '/IngredientBatch','text': 'Ingredient Batch'})
-              console.log("pushed ingredient batch link")
-              }
-            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'productbatch.read') {
+            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'productbatch.read')
               links.push({'url': '/ProductBatch','text': 'Product Batch'})
-              console.log("pushed product batch link")
-              }
-            else {
-              console.log("did nothing")
-            }
           }
         }
       }
-      console.log(links)
       return links
     }
   }

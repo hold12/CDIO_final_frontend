@@ -1,0 +1,62 @@
+<template>
+  <div class="Recipes container">
+    <h1 class="page-header">Manage Recipes</h1>
+    <button class="btn btn-success" @click="redirect('/Recipes/new')" >New recipe</button>
+    <div class="Recipes-table">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Recipe ID</th>
+            <th>Recipe name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="recipe in recipes">
+            <td>{{ recipe.recipeId }}</td>
+            <td>{{ recipe.recipeName }}</td>
+            <button class="btn btn-success" @click="redirect('/RecipeComponents', recipe.recipeId)" >Recipe Components</button>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
+
+<script>
+import auth from '../auth'
+import router from '../router'
+export default {
+  name: 'Recipes',
+  data () {
+    return {
+      recipes: {}
+    }
+  },
+  methods: {
+    fetchRecipes: function() {
+      console.log("Clicked")
+      this.$http.post('http://localhost:8000/module/recipe/get/all', {
+        'Accept': 'application/json'
+      }, {
+        headers: {
+          'Authorization': auth.getAuthHeader()
+        }
+      }).then((response) => {
+        this.recipes = response.data
+      })
+    },
+    redirect: function(path, id) {
+      router.push({ path: path, query: {recipeId: id}})
+    }
+  },
+  created() {
+    console.log("Created!")
+    this.fetchRecipes()
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>

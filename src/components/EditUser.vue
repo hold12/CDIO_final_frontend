@@ -97,7 +97,7 @@
                     </span>
                 </span><br/>
             </div>
-        </div>        
+        </div>
 
         <div class="col-md-12">
             <!--{{ user }}
@@ -139,7 +139,7 @@ export default {
         fetchRoles: function() {
             this.$http.post('http://localhost:8000/module/role/get/all', { 'Accept' : 'application/json' }, {
                 headers: {
-                    'Authorizationn' : 'Bearer ' + localStorage.getItem('token')
+                    'Authorization' : 'Bearer ' + localStorage.getItem('token')
                 }
             }).then((response) => {
                 this.roles = response.data
