@@ -1,6 +1,8 @@
-# cdio_final_vue
+# CDIO Final - Hold12 | Front-end
 
-> A Vue.js project
+[![release](https://img.shields.io/github/release/hold12/CDIO_final_frontend.svg)](https://github.com/hold12/CDIO_final_frontend/releases)
+
+> A Vue.js project for our Jersey API.
 
 ## Build Setup
 
