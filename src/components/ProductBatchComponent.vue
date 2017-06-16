@@ -47,8 +47,7 @@ export default {
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
                 }
             }).then((response) => {
-                console.log(response.data)
-                this.productbatchComponents = response.data
+                this.productBatchComponents = response.data
             })
         }
     },
