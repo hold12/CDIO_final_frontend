@@ -24,7 +24,7 @@
 import auth from '../auth'
 export default {
   name: 'app',
-  
+
   data() {
     return {
       user: auth.user,
@@ -49,7 +49,7 @@ export default {
               links.push({'url': '/Recipes','text': 'Recipes'})
               }
             else if (this.user.authenticatedUser.roles[i].permissions[j] == 'ingredient.read') {
-              links.push({'url': '/Ingredients','text': 'Ingredients'})
+              links.push({'url': '/Ingredient','text': 'Ingredient'})
               }
             else if (this.user.authenticatedUser.roles[i].permissions[j] == 'ingredientbatch.read') {
               links.push({'url': '/IngredientBatch','text': 'Ingredient Batch'})

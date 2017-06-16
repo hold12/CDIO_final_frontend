@@ -5,6 +5,8 @@ import Login from '@/components/Login'
 import EditUser from '@/components/EditUser'
 import IngredientBatch from '@/components/IngredientBatch'
 import IngredientBatchNNew from '@/components/IngredientBatchNNew'
+import Ingredient from '@/components/Ingredient'
+import IngredientNew from '@/components/IngredientNew'
 
 Vue.use(Router)
 
@@ -35,6 +37,16 @@ export default new Router({
       path: '/IngredientBatch/New',
       name: 'Ingredient Batch New',
       component: IngredientBatchNNew
+    },
+    {
+      path: '/Ingredient',
+      name: 'Ingredient',
+      component: Ingredient
+    },
+    {
+      path: '/Ingredient/create',
+      name: 'Create Ingredient',
+      component: IngredientNew
     }
   ]
 })
