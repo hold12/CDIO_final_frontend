@@ -13,6 +13,7 @@ import Ingredient from '@/components/Ingredient'
 import IngredientNew from '@/components/IngredientNew'
 import ProductBatch from '@/components/ProductBatch'
 import ProductBatchNew from '@/components/ProductBatchNew'
+import ProductBatchComponent from '@/components/ProductBatchComponent'
 
 Vue.use(Router)
 
@@ -76,13 +77,18 @@ export default new Router({
     },
     {
       path: '/ProductBatch',
-      name: 'ProductBatch',
+      name: 'Product Batch',
       component: ProductBatch
     },
     {
       path: '/ProductBatch/create',
-      name: 'Create ProductBatch',
+      name: 'Create Product Batch',
       component: ProductBatchNew
+    },
+    {
+      path: '/ProductBatchComponent',
+      name: 'Product Batch Component',
+      component: ProductBatchComponent
     }
   ]
 })

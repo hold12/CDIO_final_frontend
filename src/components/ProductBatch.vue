@@ -23,11 +23,11 @@
 						<td>{{ pb.recipeId }}</td>
 						<td>{{ pb.recipeName }}</td>
 						<td>{{ new Date(pb.createdTime) }}</td>
-						<td>{{ pb.finishedTime }}</td>
+						<td>{{ new Date(pb.finishedTime) }}</td>
 						<td>{{ pb.status }}</td>
 						<td>{{ pb.userId }}</td>
 						<td>{{ pb.initials }}</td>
-            <td><router-link :to="'/ProductBatchComponents?id='+pb.productbatchId" class="btn btn-info">Product Batch Components</router-link></td>
+            <td><router-link :to="'/ProductBatchComponent?id='+pb.productbatchId" class="btn btn-info">Product Batch Components</router-link></td>
 					</tr>
 				</tbody>
 			</table>
