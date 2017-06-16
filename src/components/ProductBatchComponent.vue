@@ -33,22 +33,28 @@ export default {
     name: 'productBatchComponents',
     data () {
         return {
-            productBatchComponents: {}
+            productBatchComponents: {},
+            currentProductBatch: 0
         }
     },
     methods: {
         fetchProductBatchComponents: function(product) {
-            console.log('http://localhost:8000/module/productbatchcomponent/get/all/'+this.$route.query.id);
-            this.$http.post('http://localhost:8000/module/productbatchcomponent/get/all/'+this.$route.query.id, {
+            console.log('http://localhost:8000/module/productbatchcomponent/get/all/'+product)
+            this.$http.post('http://localhost:8000/module/productbatchcomponent/get/all/'+product, {
                 'Accept': 'application/json'
             }, {
                 headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
                 }
             }).then((response) => {
+                console.log(response.data)
                 this.productbatchComponents = response.data
             })
         }
+    },
+    created() {
+        this.currentProductBatch = this.$route.query.id
+        this.fetchProductBatchComponents(this.currentProductBatch)
     }
 }
 </script>

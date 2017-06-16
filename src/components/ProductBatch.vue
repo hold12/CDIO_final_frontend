@@ -55,15 +55,11 @@ export default {
         }
       }).then((response) => {
         this.productbatches = response.data
-      });
+      })
     }
   },
   created() {
-    this.fetchProductBatches();
-
-    setInterval(function() {
-        this.fetchProductBatches();
-    }.bind(this), 5000)
+    this.fetchProductBatches()
   }
 }
 
