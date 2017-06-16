@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<h1 class="page-header">Ingredients</h1>
-		<router-link to="/Ingredient/create" class="btn btn-info">Create new</router-link>
+		<router-link to="/Ingredients/create" class="btn btn-success">Create new</router-link>
 		<div class="ib-table">
 			<table class="table table-striped">
 				<thead>
@@ -48,10 +48,6 @@ export default {
   },
   created() {
     this.fetchIngredients();
-
-    setInterval(function() {
-        this.fetchIngredients();
-    }.bind(this), 5000)
   }
 }
 

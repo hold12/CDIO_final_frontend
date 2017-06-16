@@ -16,8 +16,6 @@
             <td>{{ ib.ingredientBatchId }}</td>
             <td>{{ ib.ingredientId }}</td>
             <td>{{ ib.amount }}</td>
-            <!-- Ikke tag dig af nedenstående; det er ikke implementeret endnu - det bliver til link til edit -->
-            <td><router-link :to="'/IngredientBatch/Edit?id='+ib.ingredientBatchId" class="btn btn-info">Edit</router-link></td>
           </tr>
         </tbody>
       </table>
@@ -50,10 +48,6 @@ export default {
   },
   created() {
     this.fetchBatches();
-
-    setInterval(function() {
-        this.fetchBatches();
-    }.bind(this), 5000)
   }
 }
 </script>
