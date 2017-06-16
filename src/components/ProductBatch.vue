@@ -1,0 +1,68 @@
+<template>
+	<div class="container">
+		<h1 class="page-header">Product Batches</h1>
+		<router-link to="/ProductBatch/create" class="btn btn-info">Create new</router-link>
+		<div class="ib-table">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Product batch ID</th>
+						<th>Recipe ID</th>
+						<th>Recipe name</th>
+						<th>Created time</th>
+						<th>Finished time</th>
+						<th>Status</th>
+						<th>User ID</th>
+						<th>Initials</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="pb in productbatches">
+						<td>{{ pb.productbatchId }}</td>
+						<td>{{ pb.recipeId }}</td>
+						<td>{{ pb.recipeName }}</td>
+						<td>{{ new Date(pb.createdTime) }}</td>
+						<td>{{ pb.finishedTime }}</td>
+						<td>{{ pb.status }}</td>
+						<td>{{ pb.userId }}</td>
+						<td>{{ pb.initials }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</template>
+
+<script>
+
+import auth from '../auth'
+export default {
+	name: 'ProductBatch',
+	data() {
+		return {
+			productbatches: ''
+		}
+	},
+  methods: {
+    fetchProductBatches: function() {
+			this.$http.post('http://localhost:8000/module/productbatch/get/all', {
+          'Accept': 'application/json'
+      }, {
+        headers: {
+          'Authorization': auth.getAuthHeader()
+        }
+      }).then((response) => {
+        this.productbatches = response.data
+      });
+    }
+  },
+  created() {
+    this.fetchProductBatches();
+
+    setInterval(function() {
+        this.fetchProductBatches();
+    }.bind(this), 5000)
+  }
+}
+
+</script>
