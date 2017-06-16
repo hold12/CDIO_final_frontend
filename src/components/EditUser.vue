@@ -11,7 +11,7 @@
     <div v-if="user">
         <div class="col-md-6" id="editUser">
             <form class="form-horizontal">
-                
+
                 <!-- ==== Firstname ==== -->
                 <div class="form-group">
                     <label for="firstname" class="control-label col-sm-2">Firstname:</label>
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="password" class="control-label col-sm-2">Password:</label>
                     <div class="col-sm-10">
-                        <input type="text" v-model="editUser.password" class="form-control" id="password" >
+                        <button class="btn btn-success form-control" @click="generatePassword">Generate new password</button>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
                 <!--<div class="form-group">
                     <label for="roles" class="control-label col-sm-2">Roles:</label>
                     <div class="col-sm-9 col-sm-offset-1">-->
-                        
+
                     <!-- ==== Roles Select ====-->
                         <!--<select multiple class="form-control" v-model="editUser.roles">
                             <option v-for="role in roles">{{ role }}</option>
@@ -88,14 +88,14 @@
             <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
             <!--<div class="form-group">
                 <label for="roles">Roles:</label>
-                <span id="roles" :class="{'bg-danger' : user.roles!=editUser.roles}">| 
+                <span id="roles" :class="{'bg-danger' : user.roles!=editUser.roles}">|
                     <span v-for="role in user.roles">
-                        {{ role }} | 
+                        {{ role }} |
                     </span>
-                </span> 
-                <span class="bg-success" v-if="user.roles!=editUser.roles">| 
+                </span>
+                <span class="bg-success" v-if="user.roles!=editUser.roles">|
                     <span v-for="role in editUser.roles">
-                        {{ role }} | 
+                        {{ role }} |
                     </span>
                 </span><br/>
             </div>-->
@@ -105,8 +105,8 @@
                 <span id="active" :class="{'bg-danger' : user.active!=editUser.active}" >{{ user.active }}</span> <span class="bg-success" v-if="user.active!=editUser.active">{{ editUser.active }}</span><br/>
                 <!--<span id="isActive" :class="{'bg-danger' : user.isActive!=editUser.isActive}">{{ user.isActive }}</span>-->
             </div>
-        </div>        
-    </div>  
+        </div>
+    </div>
   </div>
 </template>
 
@@ -149,7 +149,7 @@ export default {
             return array.indexOf(value) > -1 ? true : false;
         },
         updateUser: function(e) {
-            e.preventDefault() 
+            e.preventDefault()
             this.$http.post('http://localhost:8000/module/user/update', this.editUser, {
                 headers: {
                 'Authorization': auth.getAuthHeader()
@@ -157,6 +157,18 @@ export default {
             }).then((response) => {
                 router.push('/Users')
             });
+        },
+        generatePassword: function(e) {
+        console.log("Function start")
+            e.preventDefault()
+            this.$http.post('http://localhost:8000/module/user/update/password', this.editUser, {
+                headers: {
+                'Authorization': auth.getAuthHeader()
+                }
+            }).then((response) => {
+                editUser.password=response.data
+            });
+            console.log("Function finish")
         }
     },
     watch: {
