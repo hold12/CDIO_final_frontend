@@ -1,7 +1,7 @@
 <template>
   <div class="Recipes container">
     <h1 class="page-header">Manage Recipes</h1>
-    <button class="btn btn-success" @click="redirect('/Recipes/new')" >New recipe</button>
+    <router-link to="/Recipes/new" class="btn btn-success">Create new</router-link>
     <div class="Recipes-table">
       <table class="table table-striped">
         <thead>
@@ -14,7 +14,7 @@
           <tr v-for="recipe in recipes">
             <td>{{ recipe.recipeId }}</td>
             <td>{{ recipe.recipeName }}</td>
-            <button class="btn btn-success" @click="redirect('/RecipeComponents', recipe.recipeId)" >Recipe Components</button>
+            <td><router-link :to="'/RecipeComponents?id='+recipe.recipeId" class="btn btn-info">Recipe Components</router-link></td>
           </tr>
         </tbody>
       </table>
@@ -24,7 +24,6 @@
 
 <script>
 import auth from '../auth'
-import router from '../router'
 export default {
   name: 'Recipes',
   data () {
@@ -44,9 +43,6 @@ export default {
       }).then((response) => {
         this.recipes = response.data
       })
-    },
-    redirect: function(path, id) {
-      router.push({ path: path, query: {recipeId: id}})
     }
   },
   created() {

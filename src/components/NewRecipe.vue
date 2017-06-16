@@ -14,7 +14,7 @@
                         <input type="text" v-model="newRecipe.recipeName" class="form-control" id="recipename" >
                     </div>
                 </div>
-                <button class="btn btn-success form-control" @click="putRecipe" >Submit changes</button>
+                <button class="btn btn-success form-control" @click="putRecipe" >Submit</button>
             </form>
         </div>
     </div>

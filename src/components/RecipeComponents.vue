@@ -1,7 +1,7 @@
 <template>
   <div class="RecipeComponents container">
     <h1 class="page-header">Manage Recipe Components</h1>
-    <button class="btn btn-success" @click="redirect('/RecipeComponents/new', currentRecipeId)" >New recipe component</button>
+    <router-link :to="'/RecipeComponents/new?id='+currentRecipeId" class="btn btn-success">Create new</router-link>
     <div class="RecipeComponents-table">
       <table class="table table-striped">
         <thead>
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import router from '../router'
 export default {
     name: 'recipeComponents',
     data () {
@@ -50,13 +49,10 @@ export default {
         },
         isInArray: function(array, value) {
             return array.indexOf(value) > -1 ? true : false;
-        },
-        redirect: function(path, id) {
-            router.push({ path: path, query: {recipeId: id}})
         }
     },
     created() {
-        this.currentRecipeId = this.$route.query.recipeId
+        this.currentRecipeId = this.$route.query.id
         this.fetchRecipeComponents(this.currentRecipeId)
     }
 }

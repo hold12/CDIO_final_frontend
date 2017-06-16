@@ -1,7 +1,7 @@
 <template>
   <div class="users container">
     <h1 class="page-header">Manage Users</h1>
-    <button class="btn btn-success" @click="redirect('/Users/edit')" >Edit users</button>
+    <router-link to="/Users/edit" class="btn btn-success">Create new</router-link>
     <div class="users-table">
       <table class="table table-striped">
         <thead>
@@ -32,7 +32,6 @@
 
 <script>
 import auth from '../auth'
-import router from '../router'
 export default {
   name: 'users',
   data () {
@@ -52,9 +51,6 @@ export default {
       }).then((response) => {
         this.users = response.data
       });
-    },
-    redirect: function(path) {
-      router.push({path: path})
     }
   },
   created() {

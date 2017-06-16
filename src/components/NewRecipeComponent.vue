@@ -30,7 +30,7 @@
                         <input type="number" v-model="newRecipeComponent.tolerance" class="form-control" id="tolerance" >
                     </div>
                 </div>
-                <button class="btn btn-success form-control" @click="putRecipeComponent" >Create new</button>
+                <button class="btn btn-success form-control" @click="putRecipeComponent" >Submit</button>
             </form>
         </div>
         <div class="col-md-12">
@@ -46,7 +46,7 @@ export default {
     name: 'recipesComponent',
     data () {
         return {
-            newRecipeComponent: {recipeId: this.$route.query.recipeId},
+            newRecipeComponent: {recipeId: this.$route.query.id},
             currentRecipeId: 0
         }
     },
@@ -70,7 +70,7 @@ export default {
         }
     },
     created() {
-        this.currentRecipeId = this.$route.query.recipeId
+        this.currentRecipeId = this.$route.query.id
     }
 }
 </script>
