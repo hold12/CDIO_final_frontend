@@ -44,26 +44,28 @@
                     </div>
                 </div>
 
+                <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
                 <!-- ==== Roles ==== -->
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label for="roles" class="control-label col-sm-2">Roles:</label>
-                    <div class="col-sm-9 col-sm-offset-1">
+                    <div class="col-sm-9 col-sm-offset-1">-->
                         
                     <!-- ==== Roles Select ====-->
-                    <!--<div v-for="role in roles">
-                        <label><input type="checkbox" value="role" v-mode="editUser.roles"></label>
-                    </div>-->
-
-                        <!--<select multiple v-model="editUser.roles" options="roles" class="form-control"></select>-->
-                        <select multiple class="form-control" v-model="editUser.roles">
+                        <!--<select multiple class="form-control" v-model="editUser.roles">
                             <option v-for="role in roles">{{ role }}</option>
                         </select>
-                        <!--<select multiple class="form-control" v-model="user.roles">
-                            <option v-for="role in roles">{{ role }}</option>
-                        </select>-->
-                        
+                    </div>
+                </div>-->
+                <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
+
+                <div class="form-group">
+                    <label for="isActive" class="control-label col-sm-2">Is Active:</label>
+                    <div class="col-sm-9 col-sm-offset-1">
+                        <input type="checkbox" v-model="editUser.active">
                     </div>
                 </div>
+
+                <button class="btn btn-success form-control" @click="updateUser">Update User</button>
             </form>
         </div>
         <div class="col-md-6" id="displayUser">
@@ -83,7 +85,8 @@
                 <label for="password">Password:</label>
                 <span id="password" :class="{'bg-danger' : user.password!=editUser.password}" >{{ user.password }}</span> <span class="bg-success" v-if="user.password!=editUser.password">{{ editUser.password }}</span><br/>
             </div>
-            <div class="form-group">
+            <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
+            <!--<div class="form-group">
                 <label for="roles">Roles:</label>
                 <span id="roles" :class="{'bg-danger' : user.roles!=editUser.roles}">| 
                     <span v-for="role in user.roles">
@@ -95,27 +98,21 @@
                         {{ role }} | 
                     </span>
                 </span><br/>
-            </div>
+            </div>-->
+            <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
             <div class="form-group">
-                <label for="isActive">Is Active:</label>
-                <!--<span id="isActive" ;class="{'bg-danger' : user.isActive!=editUser.isActive}">{{ user.isActive }}</span>-->
+                <label for="isActive">Active:</label>
+                <span id="active" :class="{'bg-danger' : user.active!=editUser.active}" >{{ user.active }}</span> <span class="bg-success" v-if="user.active!=editUser.active">{{ editUser.active }}</span><br/>
+                <!--<span id="isActive" :class="{'bg-danger' : user.isActive!=editUser.isActive}">{{ user.isActive }}</span>-->
             </div>
         </div>        
-        <!-- edit form -->
-        <!--Page: {{ this.$route.query }}-->
-        <hr/>
-        User:<br/>
-        
-        <hr>
-        {{ user.roles }}<br>
-        {{ roles }}
-        {{ editUser.roles }}
     </div>  
   </div>
 </template>
 
 <script>
 import router from '../router'
+import auth from '../auth'
 export default {
     name: 'users',
     data () {
@@ -151,6 +148,16 @@ export default {
         },
         isInArray: function(array, value) {
             return array.indexOf(value) > -1 ? true : false;
+        },
+        updateUser: function(e) {
+            e.preventDefault() 
+            this.$http.post('http://localhost:8000/module/user/update', this.editUser, {
+                headers: {
+                'Authorization': auth.getAuthHeader()
+                }
+            }).then((response) => {
+                router.push('/Users')
+            });
         }
     },
     watch: {
