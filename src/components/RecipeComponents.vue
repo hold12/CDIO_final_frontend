@@ -36,7 +36,6 @@ export default {
     },
     methods: {
         fetchRecipeComponents: function(recipeId) {
-            console.log('http://localhost:8000/module/recipecomponent/get/all/'+recipeId);
             this.$http.post('http://localhost:8000/module/recipecomponent/get/all/'+recipeId, {
                 'Accept': 'application/json'
             }, {

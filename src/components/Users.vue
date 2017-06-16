@@ -1,7 +1,7 @@
 <template>
   <div class="users container">
     <h1 class="page-header">Manage Users</h1>
-    <router-link to="/Users/edit" class="btn btn-success">Create new</router-link>
+    <router-link to="/Users/new" class="btn btn-success">Create new</router-link>
     <div class="users-table">
       <table class="table table-striped">
         <thead>
@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     fetchUsers: function() {
-      console.log("Clicked")
       this.$http.post('http://localhost:8000/module/user/get/all', {
           'Accept': 'application/json'
       }, {
@@ -56,7 +55,6 @@ export default {
     }
   },
   created() {
-    console.log("Created!");
     this.fetchUsers();
   }
 }

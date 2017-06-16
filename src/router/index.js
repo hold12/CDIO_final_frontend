@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import Users from '@/components/Users'
 import EditUser from '@/components/EditUser'
+import NewUser from '@/components/NewUser'
 import Recipes from '@/components/Recipes'
 import NewRecipe from '@/components/NewRecipe'
 import RecipeComponents from '@/components/RecipeComponents'
@@ -35,6 +36,11 @@ export default new Router({
       path: '/Users/edit',
       name: 'EditUser',
       component: EditUser
+    },
+    {
+      path: '/Users/new',
+      name: 'NewUser',
+      component: NewUser
     },
     {
       path: '/Recipes',

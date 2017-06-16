@@ -41,7 +41,6 @@ export default {
                 'Authorization': auth.getAuthHeader()
                 }
             }).then((response) => {
-                console.log(response.data)
                 if (response.data.recipeName == this.newRecipe.recipeName)
                     router.push('/Recipes')
             })

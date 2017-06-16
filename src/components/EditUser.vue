@@ -125,7 +125,6 @@ export default {
     },
     methods: {
         fetchUser: function(userId) {
-            console.log('http://localhost:8000/module/user/getNoPerms/'+userId);
             this.$http.post('http://localhost:8000/module/user/getNoPerms/'+userId, {
                 'Accept': 'application/json'
             }, {

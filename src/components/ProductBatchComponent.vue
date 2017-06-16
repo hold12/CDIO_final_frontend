@@ -39,7 +39,6 @@ export default {
     },
     methods: {
         fetchProductBatchComponents: function(product) {
-            console.log('http://localhost:8000/module/productbatchcomponent/get/all/'+product)
             this.$http.post('http://localhost:8000/module/productbatchcomponent/get/all/'+product, {
                 'Accept': 'application/json'
             }, {

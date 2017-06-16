@@ -38,9 +38,9 @@ export default {
                 'Authorization': auth.getAuthHeader()
                 }
             }).then((response) => {
-                this.productbatches = response.data
+                this.ProductBatch = response.data
                 router.push('/ProductBatch')
-            });
+            })
         }
     }
 }

@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     fetchRecipes: function() {
-      console.log("Clicked")
       this.$http.post('http://localhost:8000/module/recipe/get/all', {
         'Accept': 'application/json'
       }, {
@@ -46,7 +45,6 @@ export default {
     }
   },
   created() {
-    console.log("Created!")
     this.fetchRecipes()
   }
 }
