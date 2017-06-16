@@ -22,10 +22,10 @@
 						<td>{{ pb.productbatchId }}</td>
 						<td>{{ pb.recipeId }}</td>
 						<td>{{ pb.recipeName }}</td>
-						<td>{{ new Date(pb.createdTime) }}</td>
+						<td>{{ new Date(pb.createdTime).toLocaleString('en-GB') }}</td>
 						<td>
 							<div v-if="pb.finishedTime != null">
-								{{ new Date(pb.finishedTime) }}
+								{{ new Date(pb.finishedTime).toLocaleString('en-GB') }}
 							</div>
 						</td>
 						<td>{{ pb.status }}</td>
