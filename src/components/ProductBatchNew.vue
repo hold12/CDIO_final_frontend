@@ -31,7 +31,7 @@ export default {
         }
     },
     methods: {
-        putIngredient: function(e) {
+        putProductBatch: function(e) {
             e.preventDefault()
             this.$http.post('http://localhost:8000/module/productbatch/create', this.ProductBatch, {
                 headers: {
@@ -39,7 +39,7 @@ export default {
                 }
             }).then((response) => {
                 this.productbatches = response.data
-                router.push('/Ingredient')
+                router.push('/ProductBatch')
             });
         }
     }

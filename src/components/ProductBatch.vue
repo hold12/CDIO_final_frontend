@@ -14,6 +14,7 @@
 						<th>Status</th>
 						<th>User ID</th>
 						<th>Initials</th>
+						<th>Product Batch Components</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,6 +27,7 @@
 						<td>{{ pb.status }}</td>
 						<td>{{ pb.userId }}</td>
 						<td>{{ pb.initials }}</td>
+            <td><router-link :to="'/ProductBatchComponents?id='+pb.productbatchId" class="btn btn-info">Product Batch Components</router-link></td>
 					</tr>
 				</tbody>
 			</table>
