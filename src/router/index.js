@@ -7,7 +7,9 @@ import Recipes from '@/components/Recipes'
 import NewRecipe from '@/components/NewRecipe'
 import RecipeComponents from '@/components/RecipeComponents'
 import NewRecipeComponent from '@/components/NewRecipeComponent'
-
+import IngredientBatch from '@/components/IngredientBatch'
+import IngredientBatchNNew from '@/components/IngredientBatchNNew'
+import IngredientBatchEdit from '@/components/IngredientBatchEdit'
 
 Vue.use(Router)
 
@@ -48,6 +50,20 @@ export default new Router({
       path: '/RecipeComponents/new',
       name: 'NewRecipeComponent',
       component: NewRecipeComponent
+    },
+    {
+      path: '/IngredientBatch',
+      name: 'Ingredient Batch',
+      component: IngredientBatch
+    },
+    {
+      path: '/IngredientBatch/New',
+      name: 'Ingredient Batch New',
+      component: IngredientBatchNNew
+    }, {
+      path: '/IngredientBatch/Edit',
+      name: 'Ingredient Batch Edit',
+      component: IngredientBatchEdit
     }
   ]
 })

@@ -48,21 +48,20 @@
                 <div class="form-group">
                     <label for="roles" class="control-label col-sm-2">Roles:</label>
                     <div class="col-sm-9 col-sm-offset-1">
-                        <div class="checkbox">
-                            <label v-for="role in roles"><input type="checkbox" class="checkbox-info" v-model="editUser.roles">{{ role.role_name }} &nbsp;</label>
-                        </div>
-                        <!--<ul>
-                            <li v-for="role in roles">{{ role.role_name }}</li>
-                        </ul>-->
-                        <!--<select multiple class="form-control" v-model="editUser.roles">
-                            <option v-for="role in roles" v-bind:value="role.role_name">{{ role.role_name }}</option>
+                        
+                    <!-- ==== Roles Select ====-->
+                    <!--<div v-for="role in roles">
+                        <label><input type="checkbox" value="role" v-mode="editUser.roles"></label>
+                    </div>-->
+
+                        <!--<select multiple v-model="editUser.roles" options="roles" class="form-control"></select>-->
+                        <select multiple class="form-control" v-model="editUser.roles">
+                            <option v-for="role in roles">{{ role }}</option>
+                        </select>
+                        <!--<select multiple class="form-control" v-model="user.roles">
+                            <option v-for="role in roles">{{ role }}</option>
                         </select>-->
-                        <!--<select multiple class="form-control">
-                            <option v-for="role in roles">{{ role.role_name }}</option>
-                        </select>-->
-                        <!--<ul>
-                            <li v-for="role in roles">{{ role.role_name }}</li>
-                        </ul>-->
+                        
                     </div>
                 </div>
             </form>
@@ -88,44 +87,49 @@
                 <label for="roles">Roles:</label>
                 <span id="roles" :class="{'bg-danger' : user.roles!=editUser.roles}">| 
                     <span v-for="role in user.roles">
-                        {{ role.role_name }} | 
+                        {{ role }} | 
                     </span>
                 </span> 
                 <span class="bg-success" v-if="user.roles!=editUser.roles">| 
                     <span v-for="role in editUser.roles">
-                        {{ role.role_name }} | 
+                        {{ role }} | 
                     </span>
                 </span><br/>
             </div>
-        </div>
-
-        <div class="col-md-12">
-            <!--{{ user }}
-            <hr>-->
-            {{ editUser }}
-        </div>            
-
+            <div class="form-group">
+                <label for="isActive">Is Active:</label>
+                <!--<span id="isActive" ;class="{'bg-danger' : user.isActive!=editUser.isActive}">{{ user.isActive }}</span>-->
+            </div>
+        </div>        
         <!-- edit form -->
+        <!--Page: {{ this.$route.query }}-->
+        <hr/>
+        User:<br/>
         
+        <hr>
+        {{ user.roles }}<br>
+        {{ roles }}
+        {{ editUser.roles }}
     </div>  
   </div>
 </template>
 
 <script>
+import router from '../router'
 export default {
     name: 'users',
     data () {
         return {
-            user: {},
-            editUser: {},
-            roles: {},
-            currentUserId: 0
+            user: [],
+            editUser: [],
+            roles: [],
+            currentUserId: this.$route.query.id
         }
     },
     methods: {
         fetchUser: function(userId) {
-            console.log('http://localhost:8000/module/user/get/'+userId);
-            this.$http.post('http://localhost:8000/module/user/get/'+userId, {
+            console.log('http://localhost:8000/module/user/getNoPerms/'+userId);
+            this.$http.post('http://localhost:8000/module/user/getNoPerms/'+userId, {
                 'Accept': 'application/json'
             }, {
                 headers: {
@@ -137,7 +141,7 @@ export default {
             })
         },
         fetchRoles: function() {
-            this.$http.post('http://localhost:8000/module/role/get/all', { 'Accept' : 'application/json' }, {
+            this.$http.post('http://localhost:8000/module/role/get/all-noperms', { 'Accept' : 'application/json' }, {
                 headers: {
                     'Authorization' : 'Bearer ' + localStorage.getItem('token')
                 }
@@ -151,13 +155,13 @@ export default {
     },
     watch: {
         currentUserId: function(val) {
+            router.push({ path: '/Users/Edit', query: {id: val} })
             this.fetchUser(val)
         }
     },
     created() {
             this.fetchRoles()
-            console.log(this.roles)
-            console.log("Auth Token: " + localStorage.getItem('token'))
+            this.fetchUser(this.currentUserId)
     }
 }
 </script>

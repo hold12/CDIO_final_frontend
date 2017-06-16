@@ -22,6 +22,7 @@
             <td>{{ user.initials }}</td>
             <td>{{ user.password }}</td>
             <td>| <span v-for="role in user.roles">{{ role.role_name }} | </span></td>
+            <td><router-link :to="'/Users/Edit?id='+user.userId" class="btn btn-info">Edit</router-link></td>  
           </tr>
         </tbody>
       </table>
