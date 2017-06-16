@@ -143,7 +143,7 @@ export default {
         fetchRoles: function() {
             this.$http.post('http://localhost:8000/module/role/get/all-noperms', { 'Accept' : 'application/json' }, {
                 headers: {
-                    'Authorizationn' : 'Bearer ' + localStorage.getItem('token')
+                    'Authorization' : 'Bearer ' + localStorage.getItem('token')
                 }
             }).then((response) => {
                 this.roles = response.data
