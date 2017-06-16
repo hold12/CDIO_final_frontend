@@ -1,7 +1,7 @@
 <template>
   <div class="users container">
     <h1 class="page-header">Manage Users</h1>
-    <a href="users/edit" class="btn btn-info">Create new user</a><br><br>
+    <router-link to="/Users/edit" class="btn btn-success">Create new</router-link>
     <div class="users-table">
       <table class="table table-striped">
         <thead>

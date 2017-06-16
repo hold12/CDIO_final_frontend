@@ -24,11 +24,9 @@
 import auth from '../auth'
 export default {
   name: 'app',
-
   data() {
     return {
-      user: auth.user,
-      role: null
+      user: auth.user
     }
   },
   methods: {
@@ -42,23 +40,16 @@ export default {
       if (this.user.authenticatedUser != null) {
         for (var i = 0; i < this.user.authenticatedUser.roles.length; i++) {
           for (var j = 0; j < this.user.authenticatedUser.roles[i].permissions.length; j++) {
-            if (this.user.authenticatedUser.roles[i].permissions[j] == 'user.read'){
+            if (this.user.authenticatedUser.roles[i].permissions[j] == 'user.read')
               links.push({'url': '/Users','text': 'Users'})
-              }
-            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'recipe.read') {
+            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'recipe.read')
               links.push({'url': '/Recipes','text': 'Recipes'})
-              }
-            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'ingredient.read') {
-              links.push({'url': '/Ingredient','text': 'Ingredient'})
-              }
-            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'ingredientbatch.read') {
+            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'ingredient.read')
+              links.push({'url': '/Ingredients','text': 'Ingredients'})
+            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'ingredientbatch.read')
               links.push({'url': '/IngredientBatch','text': 'Ingredient Batch'})
-              }
-            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'productbatch.read') {
+            else if (this.user.authenticatedUser.roles[i].permissions[j] == 'productbatch.read')
               links.push({'url': '/ProductBatch','text': 'Product Batch'})
-              }
-            else {
-            }
           }
         }
       }
