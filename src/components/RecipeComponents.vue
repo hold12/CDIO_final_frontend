@@ -7,7 +7,7 @@
         <thead>
           <tr>
             <th>Recipe ID</th>
-            <th>Ingredient ID</th>
+            <th>Ingredient</th>
             <th>Nominated Net Weight</th>
             <th>Tolerance</th>
           </tr>
@@ -15,7 +15,7 @@
         <tbody>
           <tr v-for="recipeComponent in recipeComponents">
             <td>{{ recipeComponent.recipeId }}</td>
-            <td>{{ recipeComponent.ingredientId }}</td>
+            <td>{{ recipeComponent.ingredientId }} &mdash; {{ recipeComponent.ingredientName }} &mdash; {{ recipeComponent.supplier }}</td>
             <td>{{ recipeComponent.nominatedNetWeight }}</td>
             <td>{{ recipeComponent.tolerance }}</td>
           </tr>
