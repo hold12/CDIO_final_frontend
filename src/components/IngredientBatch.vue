@@ -8,13 +8,17 @@
           <tr>
             <th>Ingredient Batch ID</th>
             <th>Ingredient ID</th>
+            <th>Ingredient name</th>
+            <th>Supplier</th>
             <th>Amount</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="ib in ingredientBatches">
             <td>{{ ib.ingredientBatchId }}</td>
-            <td>{{ ib.ingredientId }} &mdash; {{ ib.ingredientName }} &mdash; {{ ib.supplier }}</td>
+            <td>{{ ib.ingredientId }}</td>
+            <td>{{ ib.ingredientName }}</td>
+            <td>{{ ib.supplier }}</td>
             <td>{{ ib.amount }}</td>
           </tr>
         </tbody>
