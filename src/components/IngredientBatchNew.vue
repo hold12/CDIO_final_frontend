@@ -1,5 +1,4 @@
 <template>
-    <!-- This is NNew because fucking vue.js.... -->
     <div class="container">
         <h1>Create a new Ingredient Batch</h1>
         <form class="form-horizontal">
@@ -27,7 +26,7 @@
 import auth from '../auth'
 import router from '../router'
 export default {
-    name: 'ingredientbatchnnew',
+    name: 'ingredientbatchnew',
     data() {
         return {
             IngredientBatch: {
