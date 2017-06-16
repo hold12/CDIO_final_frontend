@@ -14,7 +14,7 @@
         <tbody>
           <tr v-for="ib in ingredientBatches">
             <td>{{ ib.ingredientBatchId }}</td>
-            <td>{{ ib.ingredientId }}</td>
+            <td>{{ ib.ingredientId }} &mdash; {{ ib.ingredientName }} &mdash; {{ ib.supplier }}</td>
             <td>{{ ib.amount }}</td>
           </tr>
         </tbody>
