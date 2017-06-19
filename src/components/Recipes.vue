@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     fetchRecipes: function() {
-      this.$http.post('http://localhost:8000/module/recipe/get/all', {
+      this.$http.post('https://h12-prod.wiberg.tech/module/recipe/get/all', {
         'Accept': 'application/json'
       }, {
         headers: {

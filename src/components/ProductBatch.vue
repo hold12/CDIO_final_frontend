@@ -51,7 +51,7 @@ export default {
 	},
   methods: {
     fetchProductBatches: function() {
-			this.$http.post('http://localhost:8000/module/productbatch/get/all', {
+			this.$http.post('https://h12-prod.wiberg.tech/module/productbatch/get/all', {
           'Accept': 'application/json'
       }, {
         headers: {

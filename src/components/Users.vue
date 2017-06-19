@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     fetchUsers: function() {
-      this.$http.post('http://localhost:8000/module/user/get/all', {
+      this.$http.post('https://h12-prod.wiberg.tech/module/user/get/all', {
           'Accept': 'application/json'
       }, {
         headers: {

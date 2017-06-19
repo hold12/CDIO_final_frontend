@@ -35,7 +35,7 @@ export default {
 	},
   methods: {
     fetchIngredients: function() {
-			this.$http.post('http://localhost:8000/module/ingredient/get/all', {
+			this.$http.post('https://h12-prod.wiberg.tech/module/ingredient/get/all', {
           'Accept': 'application/json'
       }, {
         headers: {

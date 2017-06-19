@@ -29,7 +29,7 @@ export default {
     methods: {
         updatePassword: function(e) {
             e.preventDefault() 
-            this.$http.post('http://localhost:8000/module/user/update', this.user, {
+            this.$http.post('https://h12-prod.wiberg.tech/module/user/update', this.user, {
                 headers: {
                 'Authorization': auth.getAuthHeader()
                 }

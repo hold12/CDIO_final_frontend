@@ -72,7 +72,7 @@ export default {
     },
     methods: {
         fetchRoles: function() {
-            this.$http.post('http://localhost:8000/module/role/get/all', { 'Accept' : 'application/json' }, {
+            this.$http.post('https://h12-prod.wiberg.tech/module/role/get/all', { 'Accept' : 'application/json' }, {
                 headers: {
                     'Authorization' : 'Bearer ' + localStorage.getItem('token')
                 }
@@ -82,7 +82,7 @@ export default {
         },
         putUser: function(e) {
             e.preventDefault() 
-            this.$http.post('http://localhost:8000/module/user/create', this.user, {
+            this.$http.post('https://h12-prod.wiberg.tech/module/user/create', this.user, {
                 headers: {
                 'Authorization': auth.getAuthHeader()
                 }
