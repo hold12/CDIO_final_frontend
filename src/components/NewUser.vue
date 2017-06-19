@@ -31,15 +31,6 @@
                         </div>
                     </div>
 
-                    <!-- ==== Password ====-->
-                    <!--<div class="form-group">
-                        <label for="password" class="control-label col-sm-2">Password:</label>
-                        <div class="col-sm-10">
-                            <input type="text" v-model="user.password" class="form-control" id="password" >
-                        </div>
-                    </div>-->
-
-                    <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
                     <!-- ==== Roles ==== -->
                     <div class="form-group">
                         <label for="roles" class="control-label col-sm-2">Roles:</label>
@@ -47,11 +38,10 @@
                             
                         <!-- ==== Roles Select ====-->
                             <select multiple class="form-control" v-model="user.roles">
-                                <option v-for="role in roles">{{ role.role_name }}</option>
+                                <option v-for="role in roles" :value="role_id">{{ role.role_name }}</option>
                             </select>
                         </div>
                     </div>
-                    <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
 
                 <button class="btn btn-success form-control" @click="putUser">Create User</button>
             </form>
