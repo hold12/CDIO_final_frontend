@@ -51,8 +51,11 @@ export default {
         }
     },
     created() {
-        this.currentProductBatch = this.$route.query.id
-        this.fetchProductBatchComponents(this.currentProductBatch)
+        setInterval(function() {
+            this.currentProductBatch = this.$route.query.id
+            this.fetchProductBatchComponents(this.currentProductBatch)
+        }.bind(this), 1000)
+        
     }
 }
 </script>
