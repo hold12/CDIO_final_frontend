@@ -40,7 +40,7 @@ export default {
     },
     methods: {
         fetchRecipeComponents: function(recipeId) {
-            this.$http.post('https://h12-prod.wiberg.tech/module/recipecomponent/get/all/'+recipeId, {
+            this.$http.post('http://h12-prod.wiberg.tech:8000/module/recipecomponent/get/all/'+recipeId, {
                 'Accept': 'application/json'
             }, {
                 headers: {

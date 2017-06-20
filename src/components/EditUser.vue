@@ -125,7 +125,7 @@ export default {
     },
     methods: {
         fetchUser: function(userId) {
-            this.$http.post('https://h12-prod.wiberg.tech/module/user/getNoPerms/'+userId, {
+            this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/getNoPerms/'+userId, {
                 'Accept': 'application/json'
             }, {
                 headers: {
@@ -137,7 +137,7 @@ export default {
             })
         },
         fetchRoles: function() {
-            this.$http.post('https://h12-prod.wiberg.tech/module/role/get/all-noperms', { 'Accept' : 'application/json' }, {
+            this.$http.post('http://h12-prod.wiberg.tech:8000/module/role/get/all-noperms', { 'Accept' : 'application/json' }, {
                 headers: {
                     'Authorization' : 'Bearer ' + localStorage.getItem('token')
                 }
@@ -150,7 +150,7 @@ export default {
         },
         updateUser: function(e) {
             e.preventDefault()
-            this.$http.post('https://h12-prod.wiberg.tech/module/user/update', this.editUser, {
+            this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/update', this.editUser, {
                 headers: {
                 'Authorization': auth.getAuthHeader()
                 }
@@ -161,7 +161,7 @@ export default {
         generatePassword: function(e) {
         console.log("Function start")
             e.preventDefault()
-            this.$http.post('https://h12-prod.wiberg.tech/module/user/update/password', this.editUser, {
+            this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/update/password', this.editUser, {
                 headers: {
                 'Authorization': auth.getAuthHeader()
                 }

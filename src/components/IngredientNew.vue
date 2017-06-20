@@ -33,7 +33,7 @@ export default {
     methods: {
         putIngredient: function(e) {
             e.preventDefault()
-            this.$http.post('https://h12-prod.wiberg.tech/module/ingredient/create', this.Ingredient, {
+            this.$http.post('http://h12-prod.wiberg.tech:8000/module/ingredient/create', this.Ingredient, {
                 headers: {
                 'Authorization': auth.getAuthHeader()
                 }

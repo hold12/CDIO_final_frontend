@@ -34,7 +34,7 @@ export default {
     methods: {
         putRecipe: function(e) {
             e.preventDefault()
-            this.$http.post('https://h12-prod.wiberg.tech/module/recipe/create', this.newRecipe, {
+            this.$http.post('http://h12-prod.wiberg.tech:8000/module/recipe/create', this.newRecipe, {
                 'Accept': 'application/json'
             }, {
                 headers: {

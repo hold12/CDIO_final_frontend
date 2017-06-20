@@ -56,7 +56,7 @@ export default {
     methods: {
         putRecipeComponent: function(e) {
             e.preventDefault()
-            this.$http.post('https://h12-prod.wiberg.tech/module/recipecomponent/create', this.newRecipeComponent, {
+            this.$http.post('http://h12-prod.wiberg.tech:8000/module/recipecomponent/create', this.newRecipeComponent, {
                 'Accept': 'application/json'
             }, {
                 headers: {
@@ -71,7 +71,7 @@ export default {
             return array.indexOf(value) > -1 ? true : false;
         },
         fetchIngredients: function() {
-                this.$http.post('https://h12-prod.wiberg.tech/module/ingredient/get/all', {
+                this.$http.post('http://h12-prod.wiberg.tech:8000/module/ingredient/get/all', {
             'Accept': 'application/json'
             }, {
                 headers: {

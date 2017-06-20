@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import router from '../router'
 
-const API_URL = 'https://h12-prod.wiberg.tech:8000/'
+const API_URL = 'http://h12-prod.wiberg.tech:8000/'
 const LOGIN_URL = API_URL + 'auth/authentication/'
 
 export default {

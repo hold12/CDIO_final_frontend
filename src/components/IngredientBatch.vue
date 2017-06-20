@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     fetchBatches: function() {
-      this.$http.post('https://h12-prod.wiberg.tech/module/ingredientbatch/get/all', {
+      this.$http.post('http://h12-prod.wiberg.tech:8000/module/ingredientbatch/get/all', {
           'Accept': 'application/json'
       }, {
         headers: {

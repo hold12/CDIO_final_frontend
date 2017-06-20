@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         fetchProductBatchComponents: function(product) {
-            this.$http.post('https://h12-prod.wiberg.tech/module/productbatchcomponent/get/all/'+product, {
+            this.$http.post('http://h12-prod.wiberg.tech:8000/module/productbatchcomponent/get/all/'+product, {
                 'Accept': 'application/json'
             }, {
                 headers: {

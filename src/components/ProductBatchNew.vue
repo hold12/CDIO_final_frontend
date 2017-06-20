@@ -36,7 +36,7 @@ export default {
     methods: {
         putProductBatch: function(e) {
             e.preventDefault()
-            this.$http.post('https://h12-prod.wiberg.tech/module/productbatch/create', this.ProductBatch, {
+            this.$http.post('http://h12-prod.wiberg.tech:8000/module/productbatch/create', this.ProductBatch, {
                 headers: {
                 'Authorization': auth.getAuthHeader()
                 }
@@ -46,7 +46,7 @@ export default {
             });
         },
         fetchRecipes: function() {
-                this.$http.post('https://h12-prod.wiberg.tech/module/recipe/get/all', {
+                this.$http.post('http://h12-prod.wiberg.tech:8000/module/recipe/get/all', {
             'Accept': 'application/json'
             }, {
                 headers: {
@@ -57,7 +57,7 @@ export default {
             });
           },
         fetchUsers: function() {
-                this.$http.post('https://h12-prod.wiberg.tech/module/user/get/all', {
+                this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/get/all', {
             'Accept': 'application/json'
             }, {
                 headers: {
