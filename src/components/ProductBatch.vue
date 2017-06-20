@@ -63,9 +63,11 @@ export default {
     }
   },
   created() {
-		setInterval(function() {
- 	  	this.fetchProductBatches()
-		}.bind(this), 3000)
+		this.fetchProductBatches()
+		
+		//setInterval(function() {
+ 	  //	this.fetchProductBatches()
+		//}.bind(this), 3000)
   }
 }
 
