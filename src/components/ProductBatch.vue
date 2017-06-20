@@ -65,7 +65,7 @@ export default {
   created() {
 		setInterval(function() {
  	  	this.fetchProductBatches()
-		}.bind(this), 1000)
+		}.bind(this), 3000)
   }
 }
 

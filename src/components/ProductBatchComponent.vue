@@ -54,7 +54,7 @@ export default {
         setInterval(function() {
             this.currentProductBatch = this.$route.query.id
             this.fetchProductBatchComponents(this.currentProductBatch)
-        }.bind(this), 1000)
+        }.bind(this), 3000)
         
     }
 }
