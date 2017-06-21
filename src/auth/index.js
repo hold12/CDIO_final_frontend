@@ -9,7 +9,7 @@ export default {
     },
 
     login(context, creds, redirect) {
-        context.$http.post(config.API_URL + '/auth/authentication/', creds
+        context.$http.post(config.API_URL_AUTH + '/authentication/', creds
         ).then((response) => {
             localStorage.setItem('token', response.body)
             this.getAuthenticatedUser(context)
@@ -60,7 +60,7 @@ export default {
     getAuthHeader(context) {
         let token = localStorage.getItem('token')
         let authHeader = 'Bearer ' + token
-        context.$http.post(config.API_URL + '/auth/authentication/validate', token
+        context.$http.post(config.API_URL_AUTH + '/authentication/validate', token
         ).then((response) => {
             if (response.status === 200) {
             } 
