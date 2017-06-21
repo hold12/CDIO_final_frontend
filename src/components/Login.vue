@@ -22,7 +22,12 @@
                 v-model="credentials.password"
             >
         </div>
-        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" v-if="loggingIn" id="loading"></span>
+        <div class="spinner" v-if="loggingIn">
+            <div class="cube1"></div>
+            <div class="cube2"></div>
+        </div>
+        <!--<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" v-if="loggingIn" id="loading"></span>-->
+        <!--<p v-if="loggingIn">Logging In</p>-->
         <div class="btn btn-primary" @click="submit()" v-else id="submit-btn">Login</div>
     </div>
 </form>    
@@ -50,8 +55,60 @@ export default {
             }
             auth.login(this, credentials, '/')
             
-            this.loggingIn = false
+            // this.loggingIn = false
         }
     }
 }
 </script>
+
+<style scoped>
+.spinner {
+  margin: 0px auto;
+  width: 25px;
+  height: 25px;
+  position: relative;
+}
+
+.cube1, .cube2 {
+  background-color: #296294;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+  animation: sk-cubemove 1.8s infinite ease-in-out;
+}
+
+.cube2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+@-webkit-keyframes sk-cubemove {
+  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+  100% { -webkit-transform: rotate(-360deg) }
+}
+
+@keyframes sk-cubemove {
+  25% { 
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+  } 50% { 
+    transform: translateX(42px) translateY(42px) rotate(-179deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+  } 50.1% { 
+    transform: translateX(42px) translateY(42px) rotate(-180deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+  } 75% { 
+    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+  } 100% { 
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+}
+</style>
