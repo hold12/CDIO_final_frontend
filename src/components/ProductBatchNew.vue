@@ -38,7 +38,7 @@ export default {
             e.preventDefault()
             this.$http.post('http://h12-prod.wiberg.tech:8000/module/productbatch/create', this.ProductBatch, {
                 headers: {
-                'Authorization': auth.getAuthHeader()
+                'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 this.ProductBatch = response.data
@@ -50,7 +50,7 @@ export default {
             'Accept': 'application/json'
             }, {
                 headers: {
-                'Authorization': auth.getAuthHeader()
+                'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 this.recipes = response.data
@@ -61,7 +61,7 @@ export default {
             'Accept': 'application/json'
             }, {
                 headers: {
-                'Authorization': auth.getAuthHeader()
+                'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 this.users = response.data

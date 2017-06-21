@@ -85,25 +85,10 @@
                 <label for="password">Password:</label>
                 <span id="password" :class="{'bg-danger' : user.password!=editUser.password}" >{{ user.password }}</span> <span class="bg-success" v-if="user.password!=editUser.password">{{ editUser.password }}</span><br/>
             </div>
-            <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
-            <!--<div class="form-group">
-                <label for="roles">Roles:</label>
-                <span id="roles" :class="{'bg-danger' : user.roles!=editUser.roles}">|
-                    <span v-for="role in user.roles">
-                        {{ role }} |
-                    </span>
-                </span>
-                <span class="bg-success" v-if="user.roles!=editUser.roles">|
-                    <span v-for="role in editUser.roles">
-                        {{ role }} |
-                    </span>
-                </span><br/>
-            </div>-->
-            <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
+            
             <div class="form-group">
                 <label for="isActive">Active:</label>
                 <span id="active" :class="{'bg-danger' : user.active!=editUser.active}" >{{ user.active }}</span> <span class="bg-success" v-if="user.active!=editUser.active">{{ editUser.active }}</span><br/>
-                <!--<span id="isActive" :class="{'bg-danger' : user.isActive!=editUser.isActive}">{{ user.isActive }}</span>-->
             </div>
         </div>
     </div>
@@ -129,7 +114,7 @@ export default {
                 'Accept': 'application/json'
             }, {
                 headers: {
-                    'Authorization': auth.getAuthHeader()
+                    'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 this.user = response.data
@@ -139,7 +124,7 @@ export default {
         fetchRoles: function() {
             this.$http.post('http://h12-prod.wiberg.tech:8000/module/role/get/all-noperms', { 'Accept' : 'application/json' }, {
                 headers: {
-                    'Authorization': auth.getAuthHeader()
+                    'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 this.roles = response.data
@@ -149,7 +134,7 @@ export default {
             e.preventDefault()
             this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/update', this.editUser, {
                 headers: {
-                'Authorization': auth.getAuthHeader()
+                'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 router.push('/Users')

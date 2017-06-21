@@ -31,7 +31,7 @@ export default {
             e.preventDefault() 
             this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/update', this.user, {
                 headers: {
-                'Authorization': auth.getAuthHeader()
+                'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 router.push('/Users')

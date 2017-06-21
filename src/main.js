@@ -13,7 +13,7 @@ Vue.use(vueResource)
 
 auth.checkAuth()
 
-Vue.http.headers.common['Authorization'] = auth.getAuthHeader();
+// Vue.http.headers.common['Authorization'] = auth.getAuthHeader();
 
 /* eslint-disable no-new */
 new Vue({

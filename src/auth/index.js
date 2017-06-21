@@ -15,22 +15,24 @@ export default {
         context.$http.post(LOGIN_URL, creds
         ).then((response) => {
             localStorage.setItem('token', response.body)
-            Vue.http.headers.common['Authorization'] = this.getAuthHeader()
+            // Vue.http.headers.common['Authorization'] = this.getAuthHeader(context)
             this.getAuthenticatedUser(context)
+            console.log("authenticated")
             this.checkAuth()
             if(redirect)
                 router.push(redirect)
         }).catch((err) => {
-            context.error = err.response.data
+            context.error = err.response
         })
     },
 
     logout() {
+        console.log("Logged out...")
         localStorage.removeItem('token')
         localStorage.removeItem('authenticatedUser')
         this.user.authenticated = false
         this.user.authenticatedUser = null
-        delete Vue.http.headers.common['Authorization']
+        // delete Vue.http.headers.common['Authorization']
     },
 
     checkAuth() {
@@ -54,7 +56,7 @@ export default {
             'Accept': 'application/json'
         }, {
           headers: {
-            'Authorization': this.getAuthHeader()
+            'Authorization': this.getAuthHeader(context)
             }
         }).then((response) => {
             localStorage.setItem('authenticatedUser', JSON.stringify(response.data))
@@ -62,7 +64,26 @@ export default {
         })
     },
     
-    getAuthHeader() {
-        return 'Bearer ' + localStorage.getItem('token')
+    getAuthHeader(context) {
+        let token = localStorage.getItem('token')
+        let authHeader = 'Bearer ' + token
+        context.$http.post(LOGIN_URL + 'validate', token
+        ).then((response) => {
+            if (response.status === 200) {
+                console.log("Okay!")
+                console.log("Auth Header = " + authHeader)
+            } 
+        }).catch((err) => {
+            if (err.status === 401) {
+                this.logout()
+                router.push('/Login')  
+            }
+        })
+
+        return authHeader
+
     },
+    validateToken(context) {
+        
+    }
 }

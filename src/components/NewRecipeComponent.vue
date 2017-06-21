@@ -60,7 +60,7 @@ export default {
                 'Accept': 'application/json'
             }, {
                 headers: {
-                'Authorization': auth.getAuthHeader()
+                'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 if (response.data.recipeId == this.newRecipeComponent.recipeId)
@@ -75,7 +75,7 @@ export default {
             'Accept': 'application/json'
             }, {
                 headers: {
-                'Authorization': auth.getAuthHeader()
+                'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 this.ingredients = response.data

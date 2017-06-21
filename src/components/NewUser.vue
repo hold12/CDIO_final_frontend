@@ -64,7 +64,7 @@ export default {
         fetchRoles: function() {
             this.$http.post('http://h12-prod.wiberg.tech:8000/module/role/get/all', { 'Accept' : 'application/json' }, {
                 headers: {
-                    'Authorization' : auth.getAuthHeader()
+                    'Authorization' : auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 this.roles = response.data
@@ -74,7 +74,7 @@ export default {
             e.preventDefault() 
             this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/create', this.user, {
                 headers: {
-                'Authorization': auth.getAuthHeader()
+                'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 router.push('/Users')

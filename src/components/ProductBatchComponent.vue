@@ -44,7 +44,7 @@ export default {
                 'Accept': 'application/json'
             }, {
                 headers: {
-                'Authorization': auth.getAuthHeader()
+                'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 this.productBatchComponents = response.data

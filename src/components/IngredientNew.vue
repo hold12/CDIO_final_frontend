@@ -35,7 +35,7 @@ export default {
             e.preventDefault()
             this.$http.post('http://h12-prod.wiberg.tech:8000/module/ingredient/create', this.Ingredient, {
                 headers: {
-                'Authorization': auth.getAuthHeader()
+                'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
                 this.ingredients = response.data
