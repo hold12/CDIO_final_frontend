@@ -44,6 +44,8 @@
 <script>
 import auth from '../auth'
 import router from '../router'
+import config from '../config'
+
 export default {
     name: 'recipesComponent',
     data () {
@@ -56,7 +58,7 @@ export default {
     methods: {
         putRecipeComponent: function(e) {
             e.preventDefault()
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/recipecomponent/create', this.newRecipeComponent, {
+            this.$http.post(config.API_URL + '/recipecomponent/create', this.newRecipeComponent, {
                 'Accept': 'application/json'
             }, {
                 headers: {
@@ -71,7 +73,7 @@ export default {
             return array.indexOf(value) > -1 ? true : false;
         },
         fetchIngredients: function() {
-                this.$http.post('http://h12-prod.wiberg.tech:8000/module/ingredient/get/all', {
+                this.$http.post(config.API_URL + '/ingredient/get/all', {
             'Accept': 'application/json'
             }, {
                 headers: {

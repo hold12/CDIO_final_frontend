@@ -30,6 +30,8 @@
 <script>
 import auth from '../auth'
 import router from '../router'
+import config from '../config'
+
 export default {
   name: 'ingredientbatch',
   data () {
@@ -39,7 +41,7 @@ export default {
   },
   methods: {
     fetchBatches: function() {
-      this.$http.post('http://h12-prod.wiberg.tech:8000/module/ingredientbatch/get/all', {
+      this.$http.post(config.API_URL + '/ingredientbatch/get/all', {
           'Accept': 'application/json'
       }, {
         headers: {

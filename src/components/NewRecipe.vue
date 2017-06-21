@@ -24,6 +24,8 @@
 <script>
 import auth from "../auth"
 import router from '../router'
+import config from '../config'
+
 export default {
     name: 'newRecipe',
     data () {
@@ -34,7 +36,7 @@ export default {
     methods: {
         putRecipe: function(e) {
             e.preventDefault()
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/recipe/create', this.newRecipe, {
+            this.$http.post(config.API_URL + '/recipe/create', this.newRecipe, {
                 'Accept': 'application/json'
             }, {
                 headers: {

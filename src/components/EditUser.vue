@@ -44,20 +44,6 @@
                     </div>
                 </div>
 
-                <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
-                <!-- ==== Roles ==== -->
-                <!--<div class="form-group">
-                    <label for="roles" class="control-label col-sm-2">Roles:</label>
-                    <div class="col-sm-9 col-sm-offset-1">-->
-
-                    <!-- ==== Roles Select ====-->
-                        <!--<select multiple class="form-control" v-model="editUser.roles">
-                            <option v-for="role in roles">{{ role }}</option>
-                        </select>
-                    </div>
-                </div>-->
-                <!-- DEACTIVATED since the SQL procedure does not support updating user roles -->
-
                 <div class="form-group">
                     <label for="isActive" class="control-label col-sm-2">Is Active:</label>
                     <div class="col-sm-9 col-sm-offset-1">
@@ -98,6 +84,8 @@
 <script>
 import router from '../router'
 import auth from '../auth'
+import config from '../config'
+
 export default {
     name: 'users',
     data () {
@@ -110,7 +98,7 @@ export default {
     },
     methods: {
         fetchUser: function(userId) {
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/getNoPerms/'+userId, {
+            this.$http.post(config.API_URL + '/user/getNoPerms/'+userId, {
                 'Accept': 'application/json'
             }, {
                 headers: {
@@ -122,7 +110,7 @@ export default {
             })
         },
         fetchRoles: function() {
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/role/get/all-noperms', { 'Accept' : 'application/json' }, {
+            this.$http.post(config.API_URL + '/role/get/all-noperms', { 'Accept' : 'application/json' }, {
                 headers: {
                     'Authorization': auth.getAuthHeader(this)
                 }
@@ -132,7 +120,7 @@ export default {
         },
         updateUser: function(e) {
             e.preventDefault()
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/update', this.editUser, {
+            this.$http.post(config.API_URL + '/user/update', this.editUser, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }
@@ -142,7 +130,7 @@ export default {
         },
         generatePassword: function(e) {
             e.preventDefault()
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/update/password', this.editUser, {
+            this.$http.post(config.API_URL + '/user/update/password', this.editUser, {
             }).then((response) => {
                 this.editUser.password = response.body
             });

@@ -42,6 +42,8 @@
 <script>
 
 import auth from '../auth'
+import config from '../config'
+
 export default {
 	name: 'ProductBatch',
 	data() {
@@ -51,7 +53,7 @@ export default {
 	},
   methods: {
     fetchProductBatches: function() {
-			this.$http.post('http://h12-prod.wiberg.tech:8000/module/productbatch/get/all', {
+			this.$http.post(config.API_URL + '/productbatch/get/all', {
           'Accept': 'application/json'
       }, {
         headers: {

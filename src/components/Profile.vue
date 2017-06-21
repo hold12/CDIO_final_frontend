@@ -19,6 +19,8 @@
 
 <script>
 import auth from '../auth'
+import config from '../config'
+
 export default {
     name: 'profile',
     data() {
@@ -29,7 +31,7 @@ export default {
     methods: {
         updatePassword: function(e) {
             e.preventDefault() 
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/update', this.user, {
+            this.$http.post(config.API_URL + '/user/update', this.user, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }

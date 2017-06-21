@@ -52,6 +52,8 @@
 <script>
 import router from '../router'
 import auth from '../auth'
+import config from '../config'
+
 export default {
     name: 'users',
     data () {
@@ -62,7 +64,7 @@ export default {
     },
     methods: {
         fetchRoles: function() {
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/role/get/all', { 'Accept' : 'application/json' }, {
+            this.$http.post(config.API_URL + '/role/get/all', { 'Accept' : 'application/json' }, {
                 headers: {
                     'Authorization' : auth.getAuthHeader(this)
                 }
@@ -72,7 +74,7 @@ export default {
         },
         putUser: function(e) {
             e.preventDefault() 
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/create', this.user, {
+            this.$http.post(config.API_URL + '/user/create', this.user, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }

@@ -22,6 +22,8 @@
 <script>
 import auth from '../auth'
 import router from '../router'
+import config from '../config'
+
 export default {
     name: 'productbatchNew',
     data() {
@@ -36,7 +38,7 @@ export default {
     methods: {
         putProductBatch: function(e) {
             e.preventDefault()
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/productbatch/create', this.ProductBatch, {
+            this.$http.post(config.API_URL + '/productbatch/create', this.ProductBatch, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }
@@ -46,7 +48,7 @@ export default {
             });
         },
         fetchRecipes: function() {
-                this.$http.post('http://h12-prod.wiberg.tech:8000/module/recipe/get/all', {
+                this.$http.post(config.API_URL + '/recipe/get/all', {
             'Accept': 'application/json'
             }, {
                 headers: {
@@ -57,7 +59,7 @@ export default {
             });
         },
         fetchUsers: function() {
-                this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/get/labtech', {
+                this.$http.post(config.API_URL + '/user/get/labtech', {
             'Accept': 'application/json'
             }, {
                 headers: {

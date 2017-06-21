@@ -26,6 +26,8 @@
 <script>
 
 import auth from '../auth'
+import config from '../config'
+
 export default {
 	name: 'Ingredient',
 	data() {
@@ -35,7 +37,7 @@ export default {
 	},
   methods: {
     fetchIngredients: function() {
-			this.$http.post('http://h12-prod.wiberg.tech:8000/module/ingredient/get/all', {
+			this.$http.post(config.API_URL + '/ingredient/get/all', {
           'Accept': 'application/json'
       }, {
         headers: {

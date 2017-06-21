@@ -24,6 +24,8 @@
 
 <script>
 import auth from '../auth'
+import config from '../config'
+
 export default {
   name: 'Recipes',
   data () {
@@ -33,7 +35,7 @@ export default {
   },
   methods: {
     fetchRecipes: function() {
-      this.$http.post('http://h12-prod.wiberg.tech:8000/module/recipe/get/all', {
+      this.$http.post(config.API_URL + '/recipe/get/all', {
         'Accept': 'application/json'
       }, {
         headers: {

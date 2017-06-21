@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import router from '../router'
-
-const API_URL = 'http://h12-prod.wiberg.tech:8000/'
-const LOGIN_URL = API_URL + 'auth/authentication/'
+import config from '../config'
 
 export default {
     user: {
@@ -11,13 +9,10 @@ export default {
     },
 
     login(context, creds, redirect) {
-        console.log("sending request")
-        context.$http.post(LOGIN_URL, creds
+        context.$http.post(config.API_URL + '/auth/authentication/', creds
         ).then((response) => {
             localStorage.setItem('token', response.body)
-            // Vue.http.headers.common['Authorization'] = this.getAuthHeader(context)
             this.getAuthenticatedUser(context)
-            console.log("authenticated")
             this.checkAuth()
             if(redirect)
                 router.push(redirect)
@@ -27,12 +22,10 @@ export default {
     },
 
     logout() {
-        console.log("Logged out...")
         localStorage.removeItem('token')
         localStorage.removeItem('authenticatedUser')
         this.user.authenticated = false
         this.user.authenticatedUser = null
-        // delete Vue.http.headers.common['Authorization']
     },
 
     checkAuth() {
@@ -52,7 +45,7 @@ export default {
     },
 
     getAuthenticatedUser(context) {
-        context.$http.post('http://h12-prod.wiberg.tech:8000/module/home/getLoggedUser', {
+        context.$http.post(config.API_URL + '/home/getLoggedUser', {
             'Accept': 'application/json'
         }, {
           headers: {
@@ -67,7 +60,7 @@ export default {
     getAuthHeader(context) {
         let token = localStorage.getItem('token')
         let authHeader = 'Bearer ' + token
-        context.$http.post(LOGIN_URL + 'validate', token
+        context.$http.post(config.API_URL + '/auth/authentication/validate', token
         ).then((response) => {
             if (response.status === 200) {
             } 
@@ -80,8 +73,5 @@ export default {
 
         return authHeader
 
-    },
-    validateToken(context) {
-        
     }
 }

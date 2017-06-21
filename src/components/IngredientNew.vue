@@ -21,6 +21,8 @@
 <script>
 import auth from '../auth'
 import router from '../router'
+import config from '../config'
+
 export default {
     name: 'ingredientNew',
     data() {
@@ -33,7 +35,7 @@ export default {
     methods: {
         putIngredient: function(e) {
             e.preventDefault()
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/ingredient/create', this.Ingredient, {
+            this.$http.post(config.API_URL + '/ingredient/create', this.Ingredient, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }

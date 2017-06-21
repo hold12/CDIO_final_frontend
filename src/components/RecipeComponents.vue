@@ -31,6 +31,8 @@
 
 <script>
 import auth from '../auth'
+import config from '../config'
+
 export default {
     name: 'recipeComponents',
     data () {
@@ -41,7 +43,7 @@ export default {
     },
     methods: {
         fetchRecipeComponents: function(recipeId) {
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/recipecomponent/get/all/'+recipeId, {
+            this.$http.post(config.API_URL + '/recipecomponent/get/all/'+recipeId, {
                 'Accept': 'application/json'
             }, {
                 headers: {

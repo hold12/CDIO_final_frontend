@@ -30,6 +30,8 @@
 
 <script>
 import auth from '../auth'
+import config from '../config'
+
 export default {
     name: 'productBatchComponents',
     data () {
@@ -40,7 +42,7 @@ export default {
     },
     methods: {
         fetchProductBatchComponents: function(product) {
-            this.$http.post('http://h12-prod.wiberg.tech:8000/module/productbatchcomponent/get/all/'+product, {
+            this.$http.post(config.API_URL + '/productbatchcomponent/get/all/'+product, {
                 'Accept': 'application/json'
             }, {
                 headers: {
@@ -59,7 +61,6 @@ export default {
             //this.currentProductBatch = this.$route.query.id
             //this.fetchProductBatchComponents(this.currentProductBatch)
         //}.bind(this), 3000)
-        
     }
 }
 </script>

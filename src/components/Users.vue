@@ -34,16 +34,17 @@
 
 <script>
 import auth from '../auth'
+import config from '../config'
 export default {
   name: 'users',
   data () {
     return {
-      users: ''
+      users: '',
     }
   },
   methods: {
     fetchUsers: function() {
-      this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/get/all', {
+      this.$http.post(config.API_URL + '/user/get/all', {
           'Accept': 'application/json'
       }, {
         headers: {
