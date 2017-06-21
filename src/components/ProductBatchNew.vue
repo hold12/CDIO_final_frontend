@@ -57,7 +57,7 @@ export default {
             });
           },
         fetchUsers: function() {
-                this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/get/all', {
+                this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/get/labtech', {
             'Accept': 'application/json'
             }, {
                 headers: {
