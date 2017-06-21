@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<h1 class="page-header">Product Batches</h1>
-		<router-link to="/ProductBatch/create" class="btn btn-info">Create new</router-link>
+		<router-link to="/ProductBatch/create" class="btn btn-success">Create new</router-link>
 		<div class="ib-table">
 			<table class="table table-striped">
 				<thead>
@@ -66,10 +66,6 @@ export default {
   },
   created() {
 		this.fetchProductBatches()
-		
-		//setInterval(function() {
- 	  //	this.fetchProductBatches()
-		//}.bind(this), 3000)
   }
 }
 

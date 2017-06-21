@@ -59,14 +59,12 @@ export default {
         putRecipeComponent: function(e) {
             e.preventDefault()
             this.$http.post(API_URL.MODULE + '/recipecomponent/create', this.newRecipeComponent, {
-                'Accept': 'application/json'
-            }, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
-                if (response.data.recipeId == this.newRecipeComponent.recipeId)
-                    router.go(-1)
+                this.newRecipeComponent = response.data
+                router.push({ path: '/RecipeComponents', query: {id: this.currentRecipeId} })
             })
         },
         isInArray: function(array, value) {

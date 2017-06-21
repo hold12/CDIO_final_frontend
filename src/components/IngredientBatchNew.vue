@@ -44,9 +44,9 @@ export default {
                 'Authorization': auth.getAuthHeader(this)
                 }
             }).then((response) => {
-                this.ingredientBatches = response.data
+                this.ingredientBatch = response.data
                 router.push('/IngredientBatch')
-            });
+            })
         },
         fetchIngredients: function() {
                 this.$http.post(API_URL.MODULE + '/ingredient/get/all', {

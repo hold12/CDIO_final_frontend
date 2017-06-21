@@ -37,8 +37,6 @@ export default {
         putRecipe: function(e) {
             e.preventDefault()
             this.$http.post(API_URL.MODULE + '/recipe/create', this.newRecipe, {
-                'Accept': 'application/json'
-            }, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }
@@ -46,9 +44,6 @@ export default {
                 if (response.data.recipeName == this.newRecipe.recipeName)
                     router.push('/Recipes')
             })
-        },
-        isInArray: function(array, value) {
-            return array.indexOf(value) > -1 ? true : false;
         }
     }
 }
