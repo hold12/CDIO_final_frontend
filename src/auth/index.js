@@ -38,7 +38,6 @@ export default {
 
         if(jwt) {
             this.user.authenticatedUser = JSON.parse(localStorage.getItem('authenticatedUser'))
-            console.log(this.user.authenticatedUser)
             this.user.authenticated = true
         }
 
