@@ -24,7 +24,7 @@
 <script>
 import auth from "../auth"
 import router from '../router'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     name: 'newRecipe',
@@ -36,7 +36,7 @@ export default {
     methods: {
         putRecipe: function(e) {
             e.preventDefault()
-            this.$http.post(config.API_URL + '/recipe/create', this.newRecipe, {
+            this.$http.post(API_URL.MODULE + '/recipe/create', this.newRecipe, {
                 'Accept': 'application/json'
             }, {
                 headers: {

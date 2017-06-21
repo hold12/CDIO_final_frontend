@@ -24,7 +24,7 @@
 
 <script>
 import auth from '../auth'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
   name: 'Recipes',
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     fetchRecipes: function() {
-      this.$http.post(config.API_URL + '/recipe/get/all', {
+      this.$http.post(API_URL.MODULE + '/recipe/get/all', {
         'Accept': 'application/json'
       }, {
         headers: {

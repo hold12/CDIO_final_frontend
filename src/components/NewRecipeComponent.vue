@@ -44,7 +44,7 @@
 <script>
 import auth from '../auth'
 import router from '../router'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     name: 'recipesComponent',
@@ -58,7 +58,7 @@ export default {
     methods: {
         putRecipeComponent: function(e) {
             e.preventDefault()
-            this.$http.post(config.API_URL + '/recipecomponent/create', this.newRecipeComponent, {
+            this.$http.post(API_URL.MODULE + '/recipecomponent/create', this.newRecipeComponent, {
                 'Accept': 'application/json'
             }, {
                 headers: {
@@ -73,7 +73,7 @@ export default {
             return array.indexOf(value) > -1 ? true : false;
         },
         fetchIngredients: function() {
-                this.$http.post(config.API_URL + '/ingredient/get/all', {
+                this.$http.post(API_URL.MODULE + '/ingredient/get/all', {
             'Accept': 'application/json'
             }, {
                 headers: {

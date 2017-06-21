@@ -84,7 +84,7 @@
 <script>
 import router from '../router'
 import auth from '../auth'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     name: 'users',
@@ -98,7 +98,7 @@ export default {
     },
     methods: {
         fetchUser: function(userId) {
-            this.$http.post(config.API_URL + '/user/getNoPerms/'+userId, {
+            this.$http.post(API_URL.MODULE + '/user/getNoPerms/'+userId, {
                 'Accept': 'application/json'
             }, {
                 headers: {
@@ -110,7 +110,7 @@ export default {
             })
         },
         fetchRoles: function() {
-            this.$http.post(config.API_URL + '/role/get/all-noperms', { 'Accept' : 'application/json' }, {
+            this.$http.post(API_URL.MODULE + '/role/get/all-noperms', { 'Accept' : 'application/json' }, {
                 headers: {
                     'Authorization': auth.getAuthHeader(this)
                 }
@@ -120,7 +120,7 @@ export default {
         },
         updateUser: function(e) {
             e.preventDefault()
-            this.$http.post(config.API_URL + '/user/update', this.editUser, {
+            this.$http.post(API_URL.MODULE + '/user/update', this.editUser, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }
@@ -130,7 +130,7 @@ export default {
         },
         generatePassword: function(e) {
             e.preventDefault()
-            this.$http.post(config.API_URL + '/user/update/password', this.editUser, {
+            this.$http.post(API_URL + '/user/update/password', this.editUser, {
             }).then((response) => {
                 this.editUser.password = response.body
             });

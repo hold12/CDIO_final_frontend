@@ -22,7 +22,7 @@
 <script>
 import auth from '../auth'
 import router from '../router'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     name: 'productbatchNew',
@@ -38,7 +38,7 @@ export default {
     methods: {
         putProductBatch: function(e) {
             e.preventDefault()
-            this.$http.post(config.API_URL + '/productbatch/create', this.ProductBatch, {
+            this.$http.post(API_URL.MODULE + '/productbatch/create', this.ProductBatch, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }
@@ -48,7 +48,7 @@ export default {
             });
         },
         fetchRecipes: function() {
-                this.$http.post(config.API_URL + '/recipe/get/all', {
+                this.$http.post(API_URL.MODULE + '/recipe/get/all', {
             'Accept': 'application/json'
             }, {
                 headers: {
@@ -59,7 +59,7 @@ export default {
             });
         },
         fetchUsers: function() {
-                this.$http.post(config.API_URL + '/user/get/labtech', {
+                this.$http.post(API_URL.MODULE + '/user/get/labtech', {
             'Accept': 'application/json'
             }, {
                 headers: {

@@ -21,7 +21,7 @@
 <script>
 import auth from '../auth'
 import router from '../router'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     name: 'ingredientNew',
@@ -35,7 +35,7 @@ export default {
     methods: {
         putIngredient: function(e) {
             e.preventDefault()
-            this.$http.post(config.API_URL + '/ingredient/create', this.Ingredient, {
+            this.$http.post(API_URL.MODULE + '/ingredient/create', this.Ingredient, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }

@@ -24,7 +24,7 @@
 <script>
 import auth from '../auth'
 import router from '../router'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     name: 'ingredientbatchnew',
@@ -39,7 +39,7 @@ export default {
     methods: {
         putIngredientBatch: function(e) {
             e.preventDefault()
-            this.$http.post(config.API_URL + '/ingredientbatch/create', this.IngredientBatch, {
+            this.$http.post(API_URL.MODULE + '/ingredientbatch/create', this.IngredientBatch, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }
@@ -49,7 +49,7 @@ export default {
             });
         },
         fetchIngredients: function() {
-                this.$http.post(config.API_URL + '/ingredient/get/all', {
+                this.$http.post(API_URL.MODULE + '/ingredient/get/all', {
             'Accept': 'application/json'
             }, {
                 headers: {

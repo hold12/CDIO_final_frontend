@@ -34,7 +34,8 @@
 
 <script>
 import auth from '../auth'
-import config from '../config'
+import * as API_URL from '../config'
+
 export default {
   name: 'users',
   data () {
@@ -44,7 +45,7 @@ export default {
   },
   methods: {
     fetchUsers: function() {
-      this.$http.post(config.API_URL + '/user/get/all', {
+      this.$http.post(API_URL.MODULE + '/user/get/all', {
           'Accept': 'application/json'
       }, {
         headers: {
