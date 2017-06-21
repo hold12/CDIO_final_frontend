@@ -129,7 +129,7 @@ export default {
                 'Accept': 'application/json'
             }, {
                 headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                    'Authorization': auth.getAuthHeader()
                 }
             }).then((response) => {
                 this.user = response.data
@@ -139,14 +139,11 @@ export default {
         fetchRoles: function() {
             this.$http.post('http://h12-prod.wiberg.tech:8000/module/role/get/all-noperms', { 'Accept' : 'application/json' }, {
                 headers: {
-                    'Authorization' : 'Bearer ' + localStorage.getItem('token')
+                    'Authorization': auth.getAuthHeader()
                 }
             }).then((response) => {
                 this.roles = response.data
             })
-        },
-        isInArray: function(array, value) {
-            return array.indexOf(value) > -1 ? true : false;
         },
         updateUser: function(e) {
             e.preventDefault()
@@ -159,16 +156,11 @@ export default {
             });
         },
         generatePassword: function(e) {
-        console.log("Function start")
             e.preventDefault()
             this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/update/password', this.editUser, {
-                headers: {
-                'Authorization': auth.getAuthHeader()
-                }
             }).then((response) => {
-                editUser.password=response.data
+                this.editUser.password = response.body
             });
-            console.log("Function finish")
         }
     },
     watch: {
