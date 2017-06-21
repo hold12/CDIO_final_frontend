@@ -64,7 +64,7 @@ export default {
         fetchRoles: function() {
             this.$http.post('http://h12-prod.wiberg.tech:8000/module/role/get/all', { 'Accept' : 'application/json' }, {
                 headers: {
-                    'Authorization' : 'Bearer ' + localStorage.getItem('token')
+                    'Authorization' : auth.getAuthHeader()
                 }
             }).then((response) => {
                 this.roles = response.data

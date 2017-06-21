@@ -38,6 +38,7 @@ export default {
 
         if(jwt) {
             this.user.authenticatedUser = JSON.parse(localStorage.getItem('authenticatedUser'))
+            console.log(this.user.authenticatedUser)
             this.user.authenticated = true
         }
 
@@ -58,6 +59,7 @@ export default {
             }
         }).then((response) => {
             localStorage.setItem('authenticatedUser', JSON.stringify(response.data))
+            this.user.authenticatedUser = JSON.parse(localStorage.getItem('authenticatedUser'))
         })
     },
     

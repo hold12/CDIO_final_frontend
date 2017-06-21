@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import auth from '../auth'
 export default {
     name: 'recipeComponents',
     data () {
@@ -44,7 +45,7 @@ export default {
                 'Accept': 'application/json'
             }, {
                 headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'Authorization': auth.getAuthHeader()
                 }
             }).then((response) => {
                 this.recipeComponents = response.data

@@ -55,7 +55,7 @@ export default {
             }).then((response) => {
                 this.recipes = response.data
             });
-          },
+        },
         fetchUsers: function() {
                 this.$http.post('http://h12-prod.wiberg.tech:8000/module/user/get/all', {
             'Accept': 'application/json'
@@ -67,10 +67,10 @@ export default {
                 this.users = response.data
             });
         }
-      },
-      created() {
-          this.fetchRecipes()
-          this.fetchUsers()
-      }
+    },
+    created() {
+        this.fetchRecipes()
+        this.fetchUsers()
     }
+}
 </script>
