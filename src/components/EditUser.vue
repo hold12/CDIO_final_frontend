@@ -130,7 +130,7 @@ export default {
         },
         generatePassword: function(e) {
             e.preventDefault()
-            this.$http.post(API_URL + '/user/update/password', this.editUser, {
+            this.$http.post(API_URL.MODULE + '/user/update/password', this.editUser, {
             }).then((response) => {
                 this.editUser.password = response.body
             });
