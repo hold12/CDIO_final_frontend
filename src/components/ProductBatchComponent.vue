@@ -30,7 +30,7 @@
 
 <script>
 import auth from '../auth'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     name: 'productBatchComponents',
@@ -42,7 +42,7 @@ export default {
     },
     methods: {
         fetchProductBatchComponents: function(product) {
-            this.$http.post(config.API_URL + '/productbatchcomponent/get/all/'+product, {
+            this.$http.post(API_URL.MODULE + '/productbatchcomponent/get/all/'+product, {
                 'Accept': 'application/json'
             }, {
                 headers: {

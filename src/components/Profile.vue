@@ -19,7 +19,7 @@
 
 <script>
 import auth from '../auth'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     name: 'profile',
@@ -31,7 +31,7 @@ export default {
     methods: {
         updatePassword: function(e) {
             e.preventDefault() 
-            this.$http.post(config.API_URL + '/user/update', this.user, {
+            this.$http.post(API_URL.MODULE + '/user/update', this.user, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }

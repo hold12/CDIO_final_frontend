@@ -38,7 +38,7 @@
                             
                         <!-- ==== Roles Select ====-->
                             <select multiple class="form-control" v-model="user.roles">
-                                <option v-for="role in roles" :value="role_id">{{ role.role_name }}</option>
+                                <option v-for="role in roles" :value="role.role_id">{{ role.role_name }}</option>
                             </select>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
 <script>
 import router from '../router'
 import auth from '../auth'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     name: 'users',
@@ -64,7 +64,7 @@ export default {
     },
     methods: {
         fetchRoles: function() {
-            this.$http.post(config.API_URL + '/role/get/all', { 'Accept' : 'application/json' }, {
+            this.$http.post(API_URL.MODULE + '/role/get/all', { 'Accept' : 'application/json' }, {
                 headers: {
                     'Authorization' : auth.getAuthHeader(this)
                 }
@@ -74,7 +74,7 @@ export default {
         },
         putUser: function(e) {
             e.preventDefault() 
-            this.$http.post(config.API_URL + '/user/create', this.user, {
+            this.$http.post(API_URL.MODULE + '/user/create', this.user, {
                 headers: {
                 'Authorization': auth.getAuthHeader(this)
                 }

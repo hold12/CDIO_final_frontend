@@ -30,7 +30,7 @@
 <script>
 import auth from '../auth'
 import router from '../router'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
   name: 'ingredientbatch',
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     fetchBatches: function() {
-      this.$http.post(config.API_URL + '/ingredientbatch/get/all', {
+      this.$http.post(API_URL.MODULE + '/ingredientbatch/get/all', {
           'Accept': 'application/json'
       }, {
         headers: {

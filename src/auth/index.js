@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import router from '../router'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     user: {
@@ -9,7 +9,7 @@ export default {
     },
 
     login(context, creds, redirect) {
-        context.$http.post(config.API_URL_AUTH + '/authentication/', creds
+        context.$http.post(API_URL.AUTH + '/authentication/', creds
         ).then((response) => {
             localStorage.setItem('token', response.body)
             this.getAuthenticatedUser(context)
@@ -45,7 +45,7 @@ export default {
     },
 
     getAuthenticatedUser(context) {
-        context.$http.post(config.API_URL + '/home/getLoggedUser', {
+        context.$http.post(API_URL.MODULE + '/home/getLoggedUser', {
             'Accept': 'application/json'
         }, {
           headers: {
@@ -60,7 +60,7 @@ export default {
     getAuthHeader(context) {
         let token = localStorage.getItem('token')
         let authHeader = 'Bearer ' + token
-        context.$http.post(config.API_URL_AUTH + '/authentication/validate', token
+        context.$http.post(API_URL.AUTH + '/authentication/validate', token
         ).then((response) => {
             if (response.status === 200) {
             } 

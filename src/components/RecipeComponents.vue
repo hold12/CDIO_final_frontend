@@ -31,7 +31,7 @@
 
 <script>
 import auth from '../auth'
-import config from '../config'
+import * as API_URL from '../config'
 
 export default {
     name: 'recipeComponents',
@@ -43,7 +43,7 @@ export default {
     },
     methods: {
         fetchRecipeComponents: function(recipeId) {
-            this.$http.post(config.API_URL + '/recipecomponent/get/all/'+recipeId, {
+            this.$http.post(API_URL.MODULE + '/recipecomponent/get/all/'+recipeId, {
                 'Accept': 'application/json'
             }, {
                 headers: {
