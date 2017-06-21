@@ -70,8 +70,6 @@ export default {
         context.$http.post(LOGIN_URL + 'validate', token
         ).then((response) => {
             if (response.status === 200) {
-                console.log("Okay!")
-                console.log("Auth Header = " + authHeader)
             } 
         }).catch((err) => {
             if (err.status === 401) {
