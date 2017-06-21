@@ -66,7 +66,7 @@ export default {
                 }
             }).then((response) => {
                 if (response.data.recipeId == this.newRecipeComponent.recipeId)
-                    router.push('/Recipes')
+                    router.go(-1)
             })
         },
         isInArray: function(array, value) {

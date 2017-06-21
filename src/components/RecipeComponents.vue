@@ -52,9 +52,6 @@ export default {
             }).then((response) => {
                 this.recipeComponents = response.data
             })
-        },
-        isInArray: function(array, value) {
-            return array.indexOf(value) > -1 ? true : false;
         }
     },
     created() {
